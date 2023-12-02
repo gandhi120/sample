@@ -20,7 +20,7 @@ class App extends Component {
   render() {
     return (
       <View>
-        <Text>hello</Text>
+        <Text>ello</Text>
       </View>
     );
   }
