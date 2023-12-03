@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
-import {createDrawerNavigator} from '@react-navigation/drawer';
-import HomeStackNavigator from './stack-navigators/HomeStackNavigator';
 import MyRewardStackNavigator from './stack-navigators/MyRewardStackNavigator';
 import LocationStackNavigator from './stack-navigators/LocationStackNavigator';
+import BottomTabNavigators from './BottomTabNavigator';
+import {createDrawerNavigator} from '@react-navigation/drawer';
 
 const Drawer = createDrawerNavigator();
 
@@ -10,7 +10,7 @@ class DrawerNavigator extends Component {
   render() {
     return (
       <Drawer.Navigator>
-        <Drawer.Screen name="HomeStack" component={HomeStackNavigator} />
+        <Drawer.Screen name="HomeStack" component={BottomTabNavigators} />
         <Drawer.Screen
           name="MyRewardsStack"
           component={MyRewardStackNavigator}

@@ -5,8 +5,8 @@ import createStore from './Stores';
 import StoreManager from './storeManager';
 import {mmkvStorage} from '@utils/storageUtils';
 import {SafeAreaView, StatusBar, StyleSheet} from 'react-native';
-import DrawerNavigator from './navigation/DrawerNavigator';
 import {NavigationContainer} from '@react-navigation/native';
+import DrawerNavigator from './navigation/DrawerNavigator';
 
 export const storeManager = new StoreManager(createStore());
 const hydrate = create({
