@@ -10,7 +10,7 @@ const Home = () => (
   <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
     <Text>Home screen!</Text>
     {/* <Icon name="rocket" size={30} color="#900" /> */}
-    <CustomIcon name={'home'} size={24} color="blue" />
+    <CustomIcon name={'cart'} size={24} color="blue" />
   </View>
 );
 

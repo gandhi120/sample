@@ -12,4 +12,8 @@ import sampleIconConfig from '@theme/sample.json';
 //   type: PropTypes.string,
 // };
 
-export default createIconSetFromIcoMoon(sampleIconConfig);
+export default createIconSetFromIcoMoon(
+  sampleIconConfig,
+  'sample',
+  'sample.ttf',
+);
