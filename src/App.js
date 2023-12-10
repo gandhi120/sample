@@ -20,6 +20,13 @@ class App extends Component {
     this.state = {};
   }
 
+  componentDidMount() {
+    const {splashScreenStore} = storeManager.store;
+    setTimeout(() => {
+      splashScreenStore.hideSplashScreen();
+    }, 5000);
+  }
+
   render() {
     return (
       <SafeAreaView style={styles.safeArea}>

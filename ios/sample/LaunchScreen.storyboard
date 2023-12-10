@@ -4,6 +4,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -15,19 +16,18 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="splash" id="1Sj-UB-p0E" userLabel="splash">
-                                <rect key="frame" x="19" y="169" width="335" height="328"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="splash" translatesAutoresizingMaskIntoConstraints="NO" id="3D8-r0-fC8">
+                                <rect key="frame" x="67" y="269" width="240" height="128"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="bottom" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Advaita" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h5s-Rl-I5b">
-                                <rect key="frame" x="159" y="646" width="57" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="Xhg-sS-vWj"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="3D8-r0-fC8" firstAttribute="leading" secondItem="Xhg-sS-vWj" secondAttribute="leading" constant="67" id="DKO-RV-KOm"/>
+                            <constraint firstItem="3D8-r0-fC8" firstAttribute="top" secondItem="Xhg-sS-vWj" secondAttribute="top" constant="249" id="FiJ-Z9-WRH"/>
+                            <constraint firstItem="Xhg-sS-vWj" firstAttribute="trailing" secondItem="3D8-r0-fC8" secondAttribute="trailing" constant="68" id="Yx0-Ua-8CG"/>
+                            <constraint firstItem="Xhg-sS-vWj" firstAttribute="bottom" secondItem="3D8-r0-fC8" secondAttribute="bottom" constant="270" id="x3g-Po-PcG"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
