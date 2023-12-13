@@ -21,10 +21,10 @@ class App extends Component {
   }
 
   componentDidMount() {
-    const {splashScreenStore} = storeManager.store;
-    setTimeout(() => {
-      splashScreenStore.hideSplashScreen();
-    }, 5000);
+    // const {splashScreenStore} = storeManager.store;
+    // setTimeout(() => {
+    //   splashScreenStore.hideSplashScreen();
+    // }, 5000);
   }
 
   render() {
