@@ -1,13 +1,8 @@
 import React, {Component} from 'react';
-import {Text, View} from 'react-native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import Account from '@account';
 const Stack = createNativeStackNavigator();
 
-const Contact = () => (
-  <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-    <Text>Contact screen!</Text>
-  </View>
-);
 class ContactStackNavigator extends Component {
   render() {
     return (
@@ -15,7 +10,7 @@ class ContactStackNavigator extends Component {
         screenOptions={{
           headerShown: false,
         }}>
-        <Stack.Screen name="Book" component={Contact} />
+        <Stack.Screen name="Book" component={Account} />
       </Stack.Navigator>
     );
   }

@@ -2,6 +2,18 @@
   "migIndex": 1,
   "data": [
     {
+      "path": "assets/fonts/Rubik-Medium.ttf",
+      "sha1": "9dd416bb989087a3e63125f4fea7898c97ff157c"
+    },
+    {
+      "path": "assets/fonts/Rubik-Regular.ttf",
+      "sha1": "d06c7083a79f12a8f70b49fe8901c73b80aeda55"
+    },
+    {
+      "path": "assets/fonts/Rubik-SemiBold.ttf",
+      "sha1": "08936fac810b5b3349366ca8f8de0eec5307cd87"
+    },
+    {
       "path": "assets/fonts/sample.ttf",
       "sha1": "044e55b2b4704645f5f4e4e10e9841704f5a5a69"
     }

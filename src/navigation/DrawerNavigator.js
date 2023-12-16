@@ -9,7 +9,10 @@ const Drawer = createDrawerNavigator();
 class DrawerNavigator extends Component {
   render() {
     return (
-      <Drawer.Navigator>
+      <Drawer.Navigator
+        screenOptions={{
+          headerShown: false,
+        }}>
         <Drawer.Screen name="HomeStack" component={BottomTabNavigators} />
         <Drawer.Screen
           name="MyRewardsStack"
