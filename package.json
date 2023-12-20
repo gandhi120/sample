@@ -20,9 +20,12 @@
     "@react-navigation/drawer": "6.6.3",
     "@react-navigation/native": "6.1.7",
     "@react-navigation/native-stack": "6.9.13",
+    "formstate": "2.0.0",
+    "lodash": "4.17.21",
     "mobx": "6.3.3",
     "mobx-persist": "0.4.1",
     "mobx-react": "7.2.1",
+    "native-base": "3.3.0",
     "patch-package": "7.0.0",
     "prop-types": "15.8.1",
     "react": "18.2.0",
@@ -38,7 +41,9 @@
     "react-native-safe-area-context": "4.6.3",
     "react-native-screens": "3.22.0",
     "react-native-splash-screen": "^3.3.0",
-    "react-native-vector-icons": "10.0.2"
+    "react-native-svg": "12.1.1",
+    "react-native-vector-icons": "10.0.2",
+    "validator": "13.7.0"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",

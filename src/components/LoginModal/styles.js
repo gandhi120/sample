@@ -2,26 +2,9 @@ import {StyleSheet} from 'react-native';
 import DeviceUiInfo from '@utils/DeviceUiInfo';
 import {Colors, Fonts, Metrics} from '@theme';
 const {screenHeight} = Metrics;
-
 const {type, size} = Fonts;
+
 const styles = StyleSheet.create({
-  rootContainer: {
-    flex: 1,
-  },
-  loginText: {
-    fontSize: DeviceUiInfo.moderateScale(14),
-    color: Colors.secondary,
-    fontStyle: 'normal',
-    fontWeight: 'bold',
-  },
-  loginButtonContainer: {
-    width: DeviceUiInfo.moderateScale(70),
-    height: DeviceUiInfo.moderateScale(27),
-    backgroundColor: Colors.blue,
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderRadius: DeviceUiInfo.moderateScale(10),
-  },
   container: {
     marginHorizontal: 0,
     marginBottom: 0,
@@ -36,8 +19,7 @@ const styles = StyleSheet.create({
   },
   header: {
     flexDirection: 'row',
-    justifyContent: 'center',
-    paddingHorizontal: DeviceUiInfo.moderateScale(16),
+    justifyContent: 'space-between',
     paddingVertical: DeviceUiInfo.moderateScale(12),
     backgroundColor: Colors.skyBlue,
     borderTopLeftRadius: DeviceUiInfo.moderateScale(16),
@@ -45,8 +27,7 @@ const styles = StyleSheet.create({
   },
   closeIcon: {
     fontSize: size.f24,
-    color: Colors.black,
-    alignSelf: 'flex-start',
+    color: Colors.white,
   },
   headerText: {
     fontFamily: type.rubikMedium,
@@ -56,10 +37,17 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
   },
   topButtonContainer: {
-    width: DeviceUiInfo.moderateScale(50),
+    width: DeviceUiInfo.moderateScale(25),
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: 'red',
+    marginRight: DeviceUiInfo.moderateScale(10),
+  },
+  emptyContainer: {
+    width: DeviceUiInfo.moderateScale(25),
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: Colors.skyBlue,
+    marginLeft: DeviceUiInfo.moderateScale(10),
   },
   infoContainer: {
     paddingHorizontal: DeviceUiInfo.moderateScale(18),
@@ -90,9 +78,15 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: DeviceUiInfo.moderateScale(25),
-    backgroundColor: Colors.primaryHeader,
+    backgroundColor: Colors.skyBlue,
     marginTop: DeviceUiInfo.moderateScale(24),
     alignSelf: 'center',
+  },
+  nextButtonText: {
+    fontFamily: type.rubikRegular,
+    fontSize: DeviceUiInfo.moderateScale(16),
+    lineHeight: DeviceUiInfo.moderateScale(19),
+    color: Colors.white,
   },
 });
 export default styles;

@@ -7,6 +7,7 @@ import {mmkvStorage} from '@utils/storageUtils';
 import {SafeAreaView, StatusBar, StyleSheet} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import DrawerNavigator from './navigation/DrawerNavigator';
+import {NativeBaseProvider} from 'native-base';
 
 export const storeManager = new StoreManager(createStore());
 const hydrate = create({
@@ -30,10 +31,12 @@ class App extends Component {
   render() {
     return (
       <SafeAreaView style={styles.safeArea}>
-        <StatusBar barStyle="dark-content" />
-        <NavigationContainer>
-          <DrawerNavigator />
-        </NavigationContainer>
+        <NativeBaseProvider>
+          <StatusBar barStyle="dark-content" />
+          <NavigationContainer>
+            <DrawerNavigator />
+          </NavigationContainer>
+        </NativeBaseProvider>
       </SafeAreaView>
     );
   }

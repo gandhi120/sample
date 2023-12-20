@@ -15,6 +15,11 @@ const colors = {
   purple: '#555992',
   dayBreakBlue: '#0050B3',
   lightBlack: '#171716',
+  skyBlue: '#006fe6',
+  text: '#808185',
+  danger: '#d9534f',
+  strokeColor: '#CDD5E0',
+  primaryHeader: '#202A3F',
 };
 
 export default colors;
