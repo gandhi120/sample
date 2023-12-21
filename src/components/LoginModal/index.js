@@ -1,6 +1,12 @@
 import {View} from 'native-base';
-import React from 'react';
-import {Keyboard, SafeAreaView, Text, TouchableOpacity} from 'react-native';
+import React, {useState, useRef} from 'react';
+import {
+  Keyboard,
+  SafeAreaView,
+  Text,
+  TextInput,
+  TouchableOpacity,
+} from 'react-native';
 import styles from './styles';
 import Modal from 'react-native-modal';
 import {Colors} from '@theme';
@@ -12,6 +18,7 @@ import {isEmpty} from 'lodash';
 import {inject, observer} from 'mobx-react';
 // import {action, makeObservable, observable} from 'mobx';
 import ActionButton from '@actionButton';
+import {validOnlyNumber, otpLength} from '@utils/Constants';
 
 let formState = {};
 
@@ -29,8 +36,19 @@ formState = new FormState({
 const LoginModal = inject()(
   observer(props => {
     /* UI Design Code */
-    // const [count, setCount] = useState(0);
+    const [sendForOtp, setSendForOtp] = useState(true);
+    const [isSendAgain, setIsSendAgain] = useState(false);
+    const [otpOne, setOtpOneValue] = useState('');
+    const [otpTwo, setOtpTwoValue] = useState('');
+    const [otpThree, setOtpThreeValue] = useState('');
+    const [otpFour, setOtpFourValue] = useState('');
+    const [showOtpError, setShowOtpError] = useState(false);
 
+    const et1 = useRef();
+    const et2 = useRef();
+    const et3 = useRef();
+    const et4 = useRef();
+    console.log('et1', et1);
     const form = new Form(formState);
     const resetError = () => {
       formState.$.phone.error = undefined;
@@ -42,28 +60,32 @@ const LoginModal = inject()(
 
     const checkEmpty = () => {
       // if (this.showIndicator) {
-      //   return this.showIndicator;
-      // } else if (this.otpSend) {
-      //   const otp = this.formState.$.otp.value;
-      //   return !(!isEmpty(this.formState.$.otp.value) && otp.length === 6);
-      // } else {
-      const phoneNumber = formState.$.phone.value;
-      return !(!isEmpty(formState.$.phone.value) && phoneNumber.length === 10);
-      // }
+      //   return this.showIndicator;*
+      // } else if
+      if (sendForOtp) {
+        // const otp = formState.$.otp.value;
+        const otp = `${otpOne}${otpTwo}${otpThree}${otpFour}`;
+        return !(otp.length === otpLength);
+      } else {
+        const phoneNumber = formState.$.phone.value;
+        return !(
+          !isEmpty(formState.$.phone.value) && phoneNumber.length === 10
+        );
+      }
     };
 
     const submitForm = (isSendAgain = false) => {
       // setCount(count + 1);
       // logger.info('--submitForm function:--' + JSON.stringify(isSendAgain));
-      const {appStore} = props;
+      // const {appStore} = props;
       Keyboard.dismiss();
       // if (appStore.networkStatus) {
       // if (this.onVerificationDebounce) {
-      // if (this.otpSend && !isSendAgain) {
-      //   this.sendOtpForVerification();
-      // } else {
-      sendMobileNumberForOtp();
-      // }
+      if (sendForOtp) {
+        sendOtpForVerification();
+      } else {
+        sendMobileNumberForOtp();
+      }
       // }
       // } else {
       //   logger.info('--networkStatus--' + appStore.networkStatus);
@@ -77,25 +99,26 @@ const LoginModal = inject()(
     };
 
     const sendMobileNumberForOtp = () => {
-      console.log('sendMobileNumberForOtp');
       // logger.info('--sendMobileNumberForOtp function:--');
       // this.setDebounceForVerification(false);
       // const { userStore } = this.props;
       // console.log('formState123', formState);
       formState.$.phone.validate();
-      console.log('formState', formState);
       const phoneNumber = formState.$.phone.value;
-      // console.log('phoneNumber', phoneNumber);
       if (
         phoneNumber &&
         phoneNumber.length === 10 &&
-        !formState.$.phone.hasError
+        !formState.$.phone.error
       ) {
+        console.log('number111');
         const number = normalizePhoneNumber(phoneNumber);
+        console.log('number', number);
+
         const body = {
           country: 'IN',
           phoneNo: validateAndAddCountryCode(number),
         };
+        setSendForOtp(true);
         // logger.info('--sendMobileNumberForOtp body:--' + JSON.stringify(body));
         // this.setIndicator(true);
         // try {
@@ -124,6 +147,15 @@ const LoginModal = inject()(
       // else {
       //   this.setDebounceForVerification(true);
       // }
+    };
+
+    const sendOtpForVerification = () => {
+      const valid = validOnlyNumber(`${otpOne}${otpTwo}${otpThree}${otpFour}`);
+      if (valid) {
+        //is for valid number part..
+      } else {
+        setShowOtpError(true);
+      }
     };
 
     const normalizePhoneNumber = phone => {
@@ -164,9 +196,102 @@ const LoginModal = inject()(
       }
       return newNumber;
     };
+    const onEdit = () => {
+      //on edit
+      setSendForOtp(!sendForOtp);
+    };
 
+    const renderOtpContainer = () => {
+      return (
+        <>
+          <Text style={styles.otpTitle}>
+            {`Enter the verification code we've sent you on  ${'+91'} - ${
+              formState.$.phone.value
+            } `}{' '}
+            <Text style={styles.editText} onPress={onEdit}>
+              {'Edit'}
+            </Text>
+          </Text>
+          <View style={styles.textInputWholeContainer}>
+            <TextInput
+              style={styles.otpInput}
+              ref={et1}
+              onChangeText={text => {
+                setOtpOneValue(text);
+                text !== '' ? et2.current.focus() : null;
+                setShowOtpError(false);
+              }}
+              value={otpOne}
+              placeholder="0"
+              keyboardType="numeric"
+              maxLength={1}
+            />
+            <TextInput
+              style={styles.otpInput}
+              ref={et2}
+              onChangeText={text => {
+                setOtpTwoValue(text);
+                text !== '' ? et3.current.focus() : null;
+                setShowOtpError(false);
+              }}
+              value={otpTwo}
+              placeholder="0"
+              keyboardType="numeric"
+              maxLength={1}
+              onKeyPress={e => {
+                if (e.nativeEvent.key === 'Backspace' && otpTwo.length === 0) {
+                  et1.current.focus();
+                }
+              }}
+            />
+            <TextInput
+              style={styles.otpInput}
+              ref={et3}
+              onChangeText={text => {
+                console.log('text', text);
+                setOtpThreeValue(text);
+                text !== '' ? et4.current.focus() : null;
+                setShowOtpError(false);
+              }}
+              value={otpThree}
+              placeholder="0"
+              keyboardType="numeric"
+              maxLength={1}
+              onKeyPress={e => {
+                if (
+                  e.nativeEvent.key === 'Backspace' &&
+                  otpThree.length === 0
+                ) {
+                  et2.current.focus();
+                }
+              }}
+            />
+            <TextInput
+              style={styles.otpInput}
+              ref={et4}
+              onChangeText={text => {
+                setOtpFourValue(text);
+                setShowOtpError(false);
+              }}
+              value={otpFour}
+              placeholder="0"
+              keyboardType="numeric"
+              maxLength={1}
+              onKeyPress={e => {
+                if (e.nativeEvent.key === 'Backspace' && otpFour.length === 0) {
+                  et3.current.focus();
+                }
+              }}
+            />
+          </View>
+
+          {showOtpError ? (
+            <Text style={styles.errorMsg}>{'Please input valid otp'}</Text>
+          ) : null}
+        </>
+      );
+    };
     const {visible, onClose} = props;
-    console.log('formState.$.phone', formState.$.phone);
     return (
       <Modal
         isVisible={visible}
@@ -195,33 +320,45 @@ const LoginModal = inject()(
               />
             </View>
           </View>
+          {/* {sendForOtp ? (
+            renderOtpContainer()
+          ) : ( */}
           <View style={styles.infoContainer}>
-            <Text style={styles.phoneText}>{'Enter your phone number'}</Text>
-            <TextField
-              maxLength={10}
-              placeholder={'9725671103'}
-              fieldState={formState.$.phone}
-              inputOptions={{
-                style: styles.inputCtrl,
-                placeholderTextColor: Colors.strokeColor,
-                selectionColor: Colors.selected,
-                autoCapitalize: 'none',
-                keyboardType: 'phone-pad',
-                // ref: ref => this.setInputRef(ref, 'phone'),
-                blurOnSubmit: false,
-                returnKeyType: 'next',
-                // onBlur: () => {
-                //   this.onBlur();
-                // },
-                // onSubmitEditing: () => this.submitForm(),
-              }}
-              headerText={'Phone Number'}
-              errorStyle={styles.errorMsg}
-              rightText={'+91'}
-              // imageIcon={Images.bharatImage}
-              // iconStyle={styles.bharatIconStyle}
-              onChangeTextField={() => resetError()}
-            />
+            {sendForOtp ? (
+              renderOtpContainer()
+            ) : (
+              <>
+                <Text style={styles.phoneText}>
+                  {'Enter your phone number'}
+                </Text>
+                <TextField
+                  maxLength={10}
+                  placeholder={'9725671103'}
+                  fieldState={formState.$.phone}
+                  inputOptions={{
+                    style: styles.inputCtrl,
+                    placeholderTextColor: Colors.strokeColor,
+                    selectionColor: Colors.selected,
+                    autoCapitalize: 'none',
+                    keyboardType: 'phone-pad',
+                    // ref: ref => this.setInputRef(ref, 'phone'),
+                    blurOnSubmit: false,
+                    returnKeyType: 'next',
+                    // onBlur: () => {
+                    //   this.onBlur();
+                    // },
+                    // onSubmitEditing: () => this.submitForm(),
+                  }}
+                  headerText={'Phone Number'}
+                  errorStyle={styles.errorMsg}
+                  rightText={'+91'}
+                  // imageIcon={Images.bharatImage}
+                  // iconStyle={styles.bharatIconStyle}
+                  onChangeTextField={() => resetError()}
+                />
+              </>
+            )}
+
             <TouchableOpacity
               style={[
                 styles.nextButtonContainer,
@@ -237,11 +374,12 @@ const LoginModal = inject()(
               <ActivityIndicator size="large" animating={true} color="white" />
             ) : ( */}
               <Text style={styles.nextButtonText}>
-                {this.otpSend ? 'Confirm' : 'Send me the code'}
+                {sendForOtp ? 'Verify' : 'Send me the code'}
               </Text>
               {/* )} */}
             </TouchableOpacity>
           </View>
+          {/* )} */}
         </View>
       </Modal>
     );

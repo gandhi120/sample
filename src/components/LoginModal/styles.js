@@ -88,5 +88,38 @@ const styles = StyleSheet.create({
     lineHeight: DeviceUiInfo.moderateScale(19),
     color: Colors.white,
   },
+  otpTitle: {
+    fontFamily: type.rubikMedium,
+    fontSize: DeviceUiInfo.moderateScale(15),
+    color: Colors.black,
+    marginBottom: DeviceUiInfo.moderateScale(15),
+    alignItems: 'center',
+  },
+  editText: {
+    fontFamily: type.rubikMedium,
+    fontSize: DeviceUiInfo.moderateScale(15),
+    color: Colors.blue,
+    marginBottom: DeviceUiInfo.moderateScale(15),
+    alignItems: 'center',
+  },
+  textInputWholeContainer: {
+    alignItems: 'center',
+    justifyContent: 'space-evenly',
+    flexDirection: 'row',
+    marginBottom: DeviceUiInfo.moderateScale(10),
+  },
+  otpInput: {
+    height: DeviceUiInfo.moderateScale(35),
+    width: DeviceUiInfo.moderateScale(35),
+    borderWidth: 1,
+    textAlign: 'center',
+    borderRadius: DeviceUiInfo.moderateScale(5),
+  },
+  errorMsg: {
+    color: Colors.danger,
+    alignSelf: 'center',
+    justifyContent: 'flex-end',
+    fontSize: size.medium,
+  },
 });
 export default styles;
