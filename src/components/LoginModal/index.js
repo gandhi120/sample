@@ -18,7 +18,7 @@ import {isEmpty} from 'lodash';
 import {inject, observer} from 'mobx-react';
 // import {action, makeObservable, observable} from 'mobx';
 import ActionButton from '@actionButton';
-import {validOnlyNumber, otpLength} from '@utils/Constants';
+import {validOnlyNumber, otpLength, productName} from '@utils/Constants';
 
 let formState = {};
 
@@ -36,7 +36,7 @@ formState = new FormState({
 const LoginModal = inject('userStore')(
   observer(props => {
     const {userStore} = props;
-    console.log('userStore.numberVerified', userStore);
+    console.log('userStore.numberVerified112', userStore);
     /* UI Design Code */
     const [sendForOtp, setSendForOtp] = useState(false);
     const [verificationDebounce, setVerificationDebounce] = useState(true);
@@ -336,7 +336,7 @@ const LoginModal = inject('userStore')(
             <View style={styles.emptyContainer} />
 
             <View>
-              <Text style={styles.headerText}>{'Advaita'}</Text>
+              <Text style={styles.headerText}>{productName}</Text>
             </View>
             <View>
               <ActionButton

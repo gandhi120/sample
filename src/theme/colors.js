@@ -20,6 +20,7 @@ const colors = {
   danger: '#d9534f',
   strokeColor: '#CDD5E0',
   primaryHeader: '#202A3F',
+  gray: '#e6e9ed',
 };
 
 export default colors;

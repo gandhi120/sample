@@ -15,12 +15,12 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   loginButtonContainer: {
-    width: DeviceUiInfo.moderateScale(70),
-    height: DeviceUiInfo.moderateScale(27),
-    backgroundColor: Colors.blue,
-    alignItems: 'center',
+    width: DeviceUiInfo.moderateScale(50),
+    height: DeviceUiInfo.moderateScale(30),
+    // backgroundColor: Colors.blue,
+    alignItems: 'flex-end',
     justifyContent: 'center',
-    borderRadius: DeviceUiInfo.moderateScale(10),
+    // borderRadius: DeviceUiInfo.moderateScale(10),
   },
   container: {
     marginHorizontal: 0,
@@ -93,6 +93,10 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.primaryHeader,
     marginTop: DeviceUiInfo.moderateScale(24),
     alignSelf: 'center',
+  },
+  userIcon: {
+    color: Colors.white,
+    fontSize: DeviceUiInfo.verticalScale(20),
   },
 });
 export default styles;
