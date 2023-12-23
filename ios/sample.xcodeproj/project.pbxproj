@@ -36,7 +36,7 @@
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		B97897D40F204C64B4F13332 /* Rubik-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DA72997C94174465A18BDD19 /* Rubik-Regular.ttf */; };
 		D656951B764C4460ABE858B5 /* Rubik-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FA4E28F71BAC4CB3B269B4AB /* Rubik-Medium.ttf */; };
-		16F8EA73DE4A4C408BE20F14 /* sample.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E5ACE8A4D4034822BF05B5FF /* sample.ttf */; };
+		F852E058E03D491EAB01C615 /* sample.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9D3FF0851ECA40799FC92BF4 /* sample.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -90,7 +90,7 @@
 		EB3A53844EE4E5A0462D471A /* Pods-sample-sampleTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sample-sampleTests.debug.xcconfig"; path = "Target Support Files/Pods-sample-sampleTests/Pods-sample-sampleTests.debug.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		FA4E28F71BAC4CB3B269B4AB /* Rubik-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Rubik-Medium.ttf"; path = "../assets/fonts/Rubik-Medium.ttf"; sourceTree = "<group>"; };
-		E5ACE8A4D4034822BF05B5FF /* sample.ttf */ = {isa = PBXFileReference; name = "sample.ttf"; path = "../assets/fonts/sample.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		9D3FF0851ECA40799FC92BF4 /* sample.ttf */ = {isa = PBXFileReference; name = "sample.ttf"; path = "../assets/fonts/sample.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -187,7 +187,7 @@
 				FA4E28F71BAC4CB3B269B4AB /* Rubik-Medium.ttf */,
 				DA72997C94174465A18BDD19 /* Rubik-Regular.ttf */,
 				02C2F69939D44203A7387AB8 /* Rubik-SemiBold.ttf */,
-				E5ACE8A4D4034822BF05B5FF /* sample.ttf */,
+				9D3FF0851ECA40799FC92BF4 /* sample.ttf */,
 			);
 			name = Resources;
 			path = "";
@@ -355,7 +355,7 @@
 				D656951B764C4460ABE858B5 /* Rubik-Medium.ttf in Resources */,
 				B97897D40F204C64B4F13332 /* Rubik-Regular.ttf in Resources */,
 				6E8085378A6F42D7BBE6F64F /* Rubik-SemiBold.ttf in Resources */,
-				16F8EA73DE4A4C408BE20F14 /* sample.ttf in Resources */,
+				F852E058E03D491EAB01C615 /* sample.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
