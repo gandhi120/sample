@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import Modules from '@module';
-import {create} from 'mobx-persist';
 import createStore from './Stores';
 import StoreManager from './storeManager';
 import {mmkvStorage} from '@utils/storageUtils';
@@ -8,8 +7,12 @@ import {SafeAreaView, StatusBar, StyleSheet} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import DrawerNavigator from './navigation/DrawerNavigator';
 import {NativeBaseProvider} from 'native-base';
+import {observer, Provider} from 'mobx-react';
+import {create} from 'mobx-persist';
 
 export const storeManager = new StoreManager(createStore());
+console.log('storeManager', storeManager);
+console.log('storeManager', storeManager.store.userStore);
 const hydrate = create({
   storage: mmkvStorage,
   jsonify: false,
@@ -32,10 +35,12 @@ class App extends Component {
     return (
       <SafeAreaView style={styles.safeArea}>
         <NativeBaseProvider>
-          <StatusBar barStyle="dark-content" />
-          <NavigationContainer>
-            <DrawerNavigator />
-          </NavigationContainer>
+          <Provider {...storeManager.store}>
+            <StatusBar barStyle="dark-content" />
+            <NavigationContainer>
+              <DrawerNavigator />
+            </NavigationContainer>
+          </Provider>
         </NativeBaseProvider>
       </SafeAreaView>
     );

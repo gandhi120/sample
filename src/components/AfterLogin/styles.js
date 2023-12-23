@@ -1,7 +1,6 @@
 import {StyleSheet} from 'react-native';
 import DeviceUiInfo from '@utils/DeviceUiInfo';
-import {Colors, Fonts, Metrics} from '@theme';
-const {screenHeight} = Metrics;
+import {Colors, Fonts} from '@theme';
 const {type, size} = Fonts;
 
 const styles = StyleSheet.create({

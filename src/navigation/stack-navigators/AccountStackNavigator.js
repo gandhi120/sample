@@ -3,7 +3,7 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import Account from '@account';
 const Stack = createNativeStackNavigator();
 
-class ContactStackNavigator extends Component {
+class AccountStackNavigator extends Component {
   render() {
     return (
       <Stack.Navigator
@@ -16,4 +16,4 @@ class ContactStackNavigator extends Component {
   }
 }
 
-export default ContactStackNavigator;
+export default AccountStackNavigator;

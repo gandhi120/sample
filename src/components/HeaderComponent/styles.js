@@ -20,7 +20,6 @@ const styles = StyleSheet.create({
     fontSize: DeviceUiInfo.moderateScale(20),
     color: Colors.secondary,
     fontFamily: type.rubikSemiBold,
-    marginBottom: DeviceUiInfo.moderateScale(10),
   },
   headerSubTitleText: {
     fontSize: DeviceUiInfo.moderateScale(13),

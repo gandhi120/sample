@@ -3,16 +3,17 @@ import {Text, View} from 'react-native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 // import Icon from 'react-native-vector-icons/FontAwesome';
 import CustomIcon from '@customIcon';
+import Home from '@home';
 
 const Stack = createNativeStackNavigator();
 
-const Home = () => (
-  <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-    <Text>Home screen!</Text>
-    {/* <Icon name="rocket" size={30} color="#900" /> */}
-    <CustomIcon type={'sample'} name={'creditCard'} size={24} color="blue" />
-  </View>
-);
+// const Home = () => (
+//   <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+//     <Text>Home screen!</Text>
+//     {/* <Icon name="rocket" size={30} color="#900" /> */}
+//     <CustomIcon type={'sample'} name={'creditCard'} size={24} color="blue" />
+//   </View>
+// );
 
 class HomeStackNavigator extends Component {
   render() {

@@ -2,9 +2,26 @@ import {StyleSheet} from 'react-native';
 import DeviceUiInfo from '@utils/DeviceUiInfo';
 import {Colors, Fonts, Metrics} from '@theme';
 const {screenHeight} = Metrics;
-const {type, size} = Fonts;
 
+const {type, size} = Fonts;
 const styles = StyleSheet.create({
+  rootContainer: {
+    flex: 1,
+  },
+  loginText: {
+    fontSize: DeviceUiInfo.moderateScale(14),
+    color: Colors.secondary,
+    fontStyle: 'normal',
+    fontWeight: 'bold',
+  },
+  loginButtonContainer: {
+    width: DeviceUiInfo.moderateScale(70),
+    height: DeviceUiInfo.moderateScale(27),
+    backgroundColor: Colors.blue,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: DeviceUiInfo.moderateScale(10),
+  },
   container: {
     marginHorizontal: 0,
     marginBottom: 0,
@@ -14,12 +31,13 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.white,
     borderTopLeftRadius: DeviceUiInfo.moderateScale(16),
     borderTopRightRadius: DeviceUiInfo.moderateScale(16),
-    height: DeviceUiInfo.moderateScale(310),
+    height: screenHeight - DeviceUiInfo.moderateScale(80),
     overflow: 'hidden',
   },
   header: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent: 'center',
+    paddingHorizontal: DeviceUiInfo.moderateScale(16),
     paddingVertical: DeviceUiInfo.moderateScale(12),
     backgroundColor: Colors.skyBlue,
     borderTopLeftRadius: DeviceUiInfo.moderateScale(16),
@@ -27,7 +45,8 @@ const styles = StyleSheet.create({
   },
   closeIcon: {
     fontSize: size.f24,
-    color: Colors.white,
+    color: Colors.black,
+    alignSelf: 'flex-start',
   },
   headerText: {
     fontFamily: type.rubikMedium,
@@ -37,17 +56,10 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
   },
   topButtonContainer: {
-    width: DeviceUiInfo.moderateScale(25),
+    width: DeviceUiInfo.moderateScale(50),
     alignItems: 'center',
     justifyContent: 'center',
-    marginRight: DeviceUiInfo.moderateScale(10),
-  },
-  emptyContainer: {
-    width: DeviceUiInfo.moderateScale(25),
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: Colors.skyBlue,
-    marginLeft: DeviceUiInfo.moderateScale(10),
+    backgroundColor: 'red',
   },
   infoContainer: {
     paddingHorizontal: DeviceUiInfo.moderateScale(18),
@@ -78,67 +90,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: DeviceUiInfo.moderateScale(25),
-    backgroundColor: Colors.skyBlue,
+    backgroundColor: Colors.primaryHeader,
     marginTop: DeviceUiInfo.moderateScale(24),
     alignSelf: 'center',
   },
-  nextButtonText: {
-    fontFamily: type.rubikRegular,
-    fontSize: DeviceUiInfo.moderateScale(16),
-    lineHeight: DeviceUiInfo.moderateScale(19),
-    color: Colors.white,
-  },
-  otpTitle: {
-    fontFamily: type.rubikMedium,
-    fontSize: DeviceUiInfo.moderateScale(15),
-    color: Colors.black,
-    marginBottom: DeviceUiInfo.moderateScale(15),
-    alignItems: 'center',
-  },
-  editText: {
-    fontFamily: type.rubikMedium,
-    fontSize: DeviceUiInfo.moderateScale(15),
-    color: Colors.blue,
-    marginBottom: DeviceUiInfo.moderateScale(15),
-    alignItems: 'center',
-  },
-  textInputWholeContainer: {
-    alignItems: 'center',
-    justifyContent: 'space-evenly',
-    flexDirection: 'row',
-    marginBottom: DeviceUiInfo.moderateScale(10),
-  },
-  otpInput: {
-    height: DeviceUiInfo.moderateScale(35),
-    width: DeviceUiInfo.moderateScale(35),
-    borderWidth: 1,
-    textAlign: 'center',
-    borderRadius: DeviceUiInfo.moderateScale(5),
-  },
-  errorMsg: {
-    color: Colors.danger,
-    alignSelf: 'center',
-    justifyContent: 'flex-end',
-    fontSize: size.medium,
-  },
-  resendContainer: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginTop: DeviceUiInfo.moderateScale(8),
-  },
-  resendText: {
-    color: Colors.skyBlue,
-    alignSelf: 'center',
-    justifyContent: 'flex-end',
-    fontSize: size.medium,
-  },
-  policyText: {
-    color: Colors.skyBlue,
-    alignSelf: 'center',
-    justifyContent: 'flex-end',
-    fontSize: size.medium,
-    marginTop: DeviceUiInfo.moderateScale(8),
-  },
 });
-
 export default styles;

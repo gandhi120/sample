@@ -2,10 +2,11 @@ import React, {Component} from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import HomeStackNavigator from './stack-navigators/HomeStackNavigator';
 import BookStackNavigator from './stack-navigators/BookStackNavigator';
-import ContactStackNavigator from './stack-navigators/ContactStackNavigator';
+import AccountStackNavigator from './stack-navigators/AccountStackNavigator';
 import CustomIcon from '@customIcon';
-import {Text, View} from 'react-native';
+import {StyleSheet, Text, View} from 'react-native';
 import HeaderComponent from '@components/HeaderComponent';
+import {Colors} from '@theme';
 
 const Tab = createBottomTabNavigator();
 
@@ -37,16 +38,24 @@ class BottomTabNavigators extends Component {
         />
         {/* <Tab.Screen name="BookStack" component={BookStackNavigator} /> */}
         <Tab.Screen
-          name="ContactStack"
-          component={ContactStackNavigator}
+          name="Account"
+          component={AccountStackNavigator}
           options={{
             tabBarIcon: () => this.renderIcon('cart'),
             headerShown: false,
+            tabBarLabelStyle: styles.tabBarLabel,
+            tabBarActiveTintColor: Colors.blue,
           }}
         />
       </Tab.Navigator>
     );
   }
 }
+
+const styles = StyleSheet.create({
+  tabBarLabel: {
+    fontSize: 12,
+  },
+});
 
 export default BottomTabNavigators;

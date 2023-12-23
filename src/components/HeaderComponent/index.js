@@ -15,7 +15,7 @@ class HeaderComponent extends Component {
           {checkPreDefinedValue(headerTitle) ? (
             <Text style={styles.headerTitleText}>{headerTitle}</Text>
           ) : null}
-          {checkPreDefinedValue(headerTitle) ? (
+          {checkPreDefinedValue(subTitle) ? (
             <Text style={styles.headerSubTitleText}>{subTitle}</Text>
           ) : null}
         </View>

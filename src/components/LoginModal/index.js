@@ -1,5 +1,5 @@
 import {View} from 'native-base';
-import React, {useState, useRef} from 'react';
+import React, {useState, useRef, useEffect} from 'react';
 import {
   Keyboard,
   SafeAreaView,
@@ -33,16 +33,33 @@ formState = new FormState({
     .disableAutoValidation()
     .validators(validators.required('otp required.'), validators.validateOtp()),
 });
-const LoginModal = inject()(
+const LoginModal = inject('userStore')(
   observer(props => {
+    const {userStore} = props;
+    console.log('userStore.numberVerified', userStore);
     /* UI Design Code */
-    const [sendForOtp, setSendForOtp] = useState(true);
-    const [isSendAgain, setIsSendAgain] = useState(false);
+    const [sendForOtp, setSendForOtp] = useState(false);
+    const [verificationDebounce, setVerificationDebounce] = useState(true);
+    // const [isSendAgain, setIsSendAgain] = useState(false);
+    const [count, setCount] = useState(0);
     const [otpOne, setOtpOneValue] = useState('');
     const [otpTwo, setOtpTwoValue] = useState('');
     const [otpThree, setOtpThreeValue] = useState('');
     const [otpFour, setOtpFourValue] = useState('');
     const [showOtpError, setShowOtpError] = useState(false);
+    useEffect(() => {
+      const interval = setInterval(() => {
+        if (count === 0) {
+          clearInterval(interval);
+        } else {
+          setCount(count - 1);
+        }
+      }, 1000);
+      return () => {
+        console.log('return');
+        clearInterval(interval);
+      };
+    }, [count]);
 
     const et1 = useRef();
     const et2 = useRef();
@@ -50,6 +67,7 @@ const LoginModal = inject()(
     const et4 = useRef();
     console.log('et1', et1);
     const form = new Form(formState);
+
     const resetError = () => {
       formState.$.phone.error = undefined;
       formState.$.phone.hasError = false;
@@ -80,13 +98,13 @@ const LoginModal = inject()(
       // const {appStore} = props;
       Keyboard.dismiss();
       // if (appStore.networkStatus) {
-      // if (this.onVerificationDebounce) {
-      if (sendForOtp) {
-        sendOtpForVerification();
-      } else {
-        sendMobileNumberForOtp();
+      if (verificationDebounce) {
+        if (sendForOtp) {
+          sendOtpForVerification();
+        } else {
+          sendMobileNumberForOtp();
+        }
       }
-      // }
       // } else {
       //   logger.info('--networkStatus--' + appStore.networkStatus);
       //   ToastMessage({
@@ -98,12 +116,11 @@ const LoginModal = inject()(
       // }
     };
 
-    const sendMobileNumberForOtp = () => {
+    const sendMobileNumberForOtp = async () => {
       // logger.info('--sendMobileNumberForOtp function:--');
-      // this.setDebounceForVerification(false);
+      setVerificationDebounce(false);
       // const { userStore } = this.props;
-      // console.log('formState123', formState);
-      formState.$.phone.validate();
+      await formState.$.phone.validate();
       const phoneNumber = formState.$.phone.value;
       if (
         phoneNumber &&
@@ -119,6 +136,9 @@ const LoginModal = inject()(
           phoneNo: validateAndAddCountryCode(number),
         };
         setSendForOtp(true);
+        setCount(60);
+        setVerificationDebounce(true);
+
         // logger.info('--sendMobileNumberForOtp body:--' + JSON.stringify(body));
         // this.setIndicator(true);
         // try {
@@ -147,12 +167,14 @@ const LoginModal = inject()(
       // else {
       //   this.setDebounceForVerification(true);
       // }
+      // }, 0);
     };
 
     const sendOtpForVerification = () => {
       const valid = validOnlyNumber(`${otpOne}${otpTwo}${otpThree}${otpFour}`);
       if (valid) {
         //is for valid number part..
+        onCrossModal();
       } else {
         setShowOtpError(true);
       }
@@ -196,9 +218,12 @@ const LoginModal = inject()(
       }
       return newNumber;
     };
+
     const onEdit = () => {
       //on edit
       setSendForOtp(!sendForOtp);
+      setCount(0);
+      setVerificationDebounce(true);
     };
 
     const renderOtpContainer = () => {
@@ -291,18 +316,22 @@ const LoginModal = inject()(
         </>
       );
     };
-    const {visible, onClose} = props;
+
+    const onCrossModal = () => {
+      const {onClose} = props;
+      onClose();
+    };
+
+    const {visible} = props;
     return (
       <Modal
         isVisible={visible}
         style={styles.container}
         // onModalHide={() => this.setCameraSheet(false)}
         // onModalShow={this.onModalShow}
-        avoidKeyboard={false}
-        // onRequestClose={() => this.onCrossModal()}
-      >
+        avoidKeyboard={true}
+        onRequestClose={() => onCrossModal()}>
         <View style={styles.subContainer}>
-          <SafeAreaView />
           <View style={styles.header}>
             <View style={styles.emptyContainer} />
 
@@ -316,7 +345,7 @@ const LoginModal = inject()(
                 iconType="sample"
                 iconStyle={styles.closeIcon}
                 // disabled={this.disableRejectResponse}
-                onPress={() => onClose()}
+                onPress={() => onCrossModal()}
               />
             </View>
           </View>
@@ -378,6 +407,15 @@ const LoginModal = inject()(
               </Text>
               {/* )} */}
             </TouchableOpacity>
+            {sendForOtp ? (
+              <TouchableOpacity style={styles.resendContainer}>
+                <Text style={styles.resendText}>{`Resend ${count}`}</Text>
+              </TouchableOpacity>
+            ) : (
+              <Text style={styles.policyText}>
+                {'I agree with your Terms of Service & Privacy Policy'}
+              </Text>
+            )}
           </View>
           {/* )} */}
         </View>
