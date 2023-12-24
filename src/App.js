@@ -7,12 +7,12 @@ import {SafeAreaView, StatusBar, StyleSheet} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import DrawerNavigator from './navigation/DrawerNavigator';
 import {NativeBaseProvider} from 'native-base';
-import {observer, Provider} from 'mobx-react';
+import {Provider} from 'mobx-react';
 import {create} from 'mobx-persist';
 
 export const storeManager = new StoreManager(createStore());
-console.log('storeManager', storeManager);
-console.log('storeManager', storeManager.store.userStore);
+export const navigationRef = React.createRef();
+
 const hydrate = create({
   storage: mmkvStorage,
   jsonify: false,
@@ -25,19 +25,28 @@ class App extends Component {
   }
 
   componentDidMount() {
+    console.log('propsApp', this.props);
+
     // const {splashScreenStore} = storeManager.store;
     // setTimeout(() => {
     //   splashScreenStore.hideSplashScreen();
     // }, 5000);
   }
+  handleNavigationRef = ref => {
+    console.log('handleNavigationRef');
+    // DON'T DO navigationRef = ref, cause this will give you "navigationRef is
+    // read only" error.
+    navigationRef.current = ref;
+  };
 
   render() {
+    console.log('propsApp', this.props);
     return (
       <SafeAreaView style={styles.safeArea}>
         <NativeBaseProvider>
           <Provider {...storeManager.store}>
             <StatusBar barStyle="dark-content" />
-            <NavigationContainer>
+            <NavigationContainer ref={this.handleNavigationRef}>
               <DrawerNavigator />
             </NavigationContainer>
           </Provider>

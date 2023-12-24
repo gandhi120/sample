@@ -1,31 +1,28 @@
-import React, {Component} from 'react';
-import {Text, View} from 'react-native';
+import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-// import Icon from 'react-native-vector-icons/FontAwesome';
-import CustomIcon from '@customIcon';
 import Home from '@home';
+import Profile from '@profile';
 
 const Stack = createNativeStackNavigator();
 
-// const Home = () => (
-//   <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-//     <Text>Home screen!</Text>
-//     {/* <Icon name="rocket" size={30} color="#900" /> */}
-//     <CustomIcon type={'sample'} name={'creditCard'} size={24} color="blue" />
-//   </View>
-// );
-
-class HomeStackNavigator extends Component {
-  render() {
-    return (
-      <Stack.Navigator
-        screenOptions={{
-          headerShown: false,
-        }}>
-        <Stack.Screen name="Home" component={Home} />
-      </Stack.Navigator>
-    );
-  }
-}
+const HomeStackNavigator = props => {
+  return (
+    <Stack.Navigator
+      screenOptions={{
+        headerShown: false,
+      }}>
+      <Stack.Screen
+        name="Home"
+        component={Home}
+        navigation={props.navigation}
+      />
+      <Stack.Screen
+        name="Profile"
+        component={Profile}
+        navigation={props.navigation}
+      />
+    </Stack.Navigator>
+  );
+};
 
 export default HomeStackNavigator;

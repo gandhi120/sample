@@ -1,53 +1,31 @@
 import {ScrollView, View} from 'native-base';
 import React from 'react';
-import {Platform, Text, TouchableWithoutFeedback} from 'react-native';
+import {
+  Platform,
+  Text,
+  TouchableOpacity,
+  TouchableWithoutFeedback,
+} from 'react-native';
 import styles from './styles';
 import Modal from 'react-native-modal';
 import {inject, observer} from 'mobx-react';
 import ActionButton from '@actionButton';
-import {productName, checkPreDefinedValue} from '@utils/Constants';
+import {productName, checkPreDefinedValue, settings} from '@utils/Constants';
 import {get, startCase} from 'lodash';
 import CustomIcon from '@customIcon';
-
-const settings = [
-  {
-    label: 'ACCOUNT',
-    item: [
-      {itemLabel: 'Profile', iconName: 'user', iconType: 'FontAwesome'},
-      {itemLabel: 'Address', iconName: 'address', iconType: 'FontAwesome'},
-      {
-        itemLabel: 'SeparateLine',
-        iconName: '',
-        iconType: '',
-      },
-    ],
-  },
-  {
-    label: 'HELP & MORE',
-    item: [
-      {itemLabel: 'Help', iconName: '', iconType: ''},
-      {itemLabel: 'Rate our app', iconName: '', iconType: ''},
-      {
-        itemLabel: 'SeparateLine',
-        iconName: '',
-        iconType: '',
-      },
-    ],
-  },
-  {
-    label: '',
-    item: [
-      {itemLabel: 'Sign Out', iconName: '', iconType: ''},
-      {itemLabel: 'App Version 1.0.0', iconName: '', iconType: ''},
-    ],
-  },
-];
+import {routing} from '@utils/routeConstant';
 
 const AfterLogin = inject('userStore')(
   observer(props => {
-    // const {userStore} = props;
-    /* UI Design Code */
-    // const [userName, setCount] = useState(0);
+    const {navigation} = props;
+
+    const onSettings = (label = '') => {
+      const {onClose} = props;
+      onClose();
+      if (label === routing.PROFILE) {
+        navigation.navigate(routing.PROFILE, {});
+      }
+    };
 
     const getShortName = name => {
       if (checkPreDefinedValue(name)) {
@@ -67,7 +45,6 @@ const AfterLogin = inject('userStore')(
     };
 
     const {visible} = props;
-    const userName = 'Varun Gandhi';
     return (
       <Modal
         isVisible={visible}
@@ -123,7 +100,7 @@ const AfterLogin = inject('userStore')(
                 <View style={styles.orderIconContainer}>
                   <CustomIcon
                     type={'sample'}
-                    name={'order'}
+                    name={'preorder'}
                     style={styles.orderIcon}
                   />
                 </View>
@@ -134,7 +111,7 @@ const AfterLogin = inject('userStore')(
                 <View style={styles.orderIconContainer}>
                   <CustomIcon
                     type={'sample'}
-                    name={'transaction'}
+                    name={'transaction1'}
                     style={styles.orderIcon}
                   />
                 </View>
@@ -144,7 +121,7 @@ const AfterLogin = inject('userStore')(
             <ScrollView>
               {settings.map(item => {
                 return (
-                  <View style={{}}>
+                  <View key={get(item, 'id')}>
                     {checkPreDefinedValue(get(item, 'label')) ? (
                       <Text style={styles.accountText}>
                         {get(item, 'label')}
@@ -153,9 +130,15 @@ const AfterLogin = inject('userStore')(
                     {get(item, 'item').length > 0
                       ? get(item, 'item').map(itemName => {
                           return (
-                            <View style={styles.settingContainer}>
+                            <View
+                              style={styles.settingContainer}
+                              key={get(item, 'id')}>
                               {get(itemName, 'itemLabel') !== 'SeparateLine' ? (
-                                <View style={styles.profileContainer}>
+                                <TouchableOpacity
+                                  style={styles.profileContainer}
+                                  onPress={() =>
+                                    onSettings(get(itemName, 'itemLabel'))
+                                  }>
                                   {checkPreDefinedValue(
                                     get(itemName, 'iconName'),
                                   ) ? (
@@ -171,7 +154,7 @@ const AfterLogin = inject('userStore')(
                                   <Text style={styles.profileText}>
                                     {get(itemName, 'itemLabel')}
                                   </Text>
-                                </View>
+                                </TouchableOpacity>
                               ) : (
                                 <View style={styles.separateLine} />
                               )}

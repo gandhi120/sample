@@ -8,12 +8,11 @@ import LoginModal from '@loginModal';
 import AfterLogin from '@afterLogin';
 import {inject, observer} from 'mobx-react';
 import {productName} from '@utils/Constants';
+import {get} from 'lodash';
 
 const Home = inject('userStore')(
   observer(props => {
     const {userStore} = props;
-    console.log('userStore.numberVerified', userStore.numberVerified);
-    /* UI Design Code */
     const [loginModalVisible, setLoginModalVisible] = useState(false);
     const [afterLoginVisible, setAfterLoginVisible] = useState(false);
 
@@ -39,7 +38,6 @@ const Home = inject('userStore')(
       <View style={styles.rootContainer}>
         <HeaderComponent
           headerTitle={productName}
-          // subTitle={'Log in to get exclusive offers'}
           RightComponent={() => renderRightComponent()}
         />
         <Text>{'HOME screen!'}</Text>
@@ -50,6 +48,7 @@ const Home = inject('userStore')(
         <AfterLogin
           visible={afterLoginVisible}
           onClose={() => setAfterLoginVisible(false)}
+          navigation={get(props, 'navigation')}
         />
       </View>
     );

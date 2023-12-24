@@ -11,5 +11,4 @@ class ProjectStore {
     this.userName = value;
   };
 }
-// const projectStore = new ProjectStore();
 export default ProjectStore;
