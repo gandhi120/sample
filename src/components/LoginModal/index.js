@@ -171,7 +171,10 @@ const LoginModal = inject('userStore')(
     };
 
     const sendOtpForVerification = () => {
-      const valid = validOnlyNumber(`${otpOne}${otpTwo}${otpThree}${otpFour}`);
+      const valid = validOnlyNumber(
+        `${otpOne}${otpTwo}${otpThree}${otpFour}`,
+        4,
+      );
       if (valid) {
         //is for valid number part..
         onCrossModal();
@@ -394,7 +397,7 @@ const LoginModal = inject('userStore')(
                 {
                   backgroundColor: checkEmpty()
                     ? Colors.strokeColor
-                    : Colors.skyBlue,
+                    : Colors.lightBlack,
                 },
               ]}
               onPress={() => submitForm()}

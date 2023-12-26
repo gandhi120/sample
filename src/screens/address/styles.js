@@ -93,10 +93,10 @@ const styles = StyleSheet.create({
     height: DeviceUiInfo.verticalScale(40),
     fontSize: DeviceUiInfo.verticalScale(16),
   },
-  firstNameContainer: {
+  pinCodeContainer: {
     marginBottom: DeviceUiInfo.verticalScale(18),
   },
-  firstName: {
+  pinCode: {
     width: '100%',
     height: DeviceUiInfo.verticalScale(45),
     borderColor: Colors.selected,

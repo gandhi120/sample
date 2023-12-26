@@ -1,7 +1,6 @@
 import {StyleSheet} from 'react-native';
 import DeviceUiInfo from '@utils/DeviceUiInfo';
-import {Colors, Fonts, Metrics} from '@theme';
-const {screenHeight} = Metrics;
+import {Colors, Fonts} from '@theme';
 const {type, size} = Fonts;
 
 const styles = StyleSheet.create({
@@ -21,7 +20,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     paddingVertical: DeviceUiInfo.moderateScale(12),
-    backgroundColor: Colors.skyBlue,
+    backgroundColor: Colors.lightBlack,
     borderTopLeftRadius: DeviceUiInfo.moderateScale(16),
     borderTopRightRadius: DeviceUiInfo.moderateScale(16),
   },
@@ -46,7 +45,7 @@ const styles = StyleSheet.create({
     width: DeviceUiInfo.moderateScale(25),
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: Colors.skyBlue,
+    backgroundColor: Colors.lightBlack,
     marginLeft: DeviceUiInfo.moderateScale(10),
   },
   infoContainer: {
@@ -133,7 +132,7 @@ const styles = StyleSheet.create({
     fontSize: size.medium,
   },
   policyText: {
-    color: Colors.skyBlue,
+    color: Colors.lightBlack,
     alignSelf: 'center',
     justifyContent: 'flex-end',
     fontSize: size.medium,

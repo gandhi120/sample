@@ -24,6 +24,8 @@ const AfterLogin = inject('userStore')(
       onClose();
       if (label === routing.PROFILE) {
         navigation.navigate(routing.PROFILE, {});
+      } else if (routing.ADDRESS) {
+        navigation.navigate(routing.ADDRESS, {});
       }
     };
 

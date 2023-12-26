@@ -25,7 +25,10 @@ const BottomTabs = props => {
     <Animated.View
       style={[
         styles.tabBarContainer,
-        {display: screen === 'Profile' ? 'none' : 'flex'},
+        {
+          display:
+            screen === 'Profile' || screen === 'Address' ? 'none' : 'flex',
+        },
       ]}>
       <View style={styles.rootContainer}>
         <Text>ACCOUNT</Text>

@@ -1,44 +1,35 @@
 import React, {useState} from 'react';
-import {Text, TextInput, TouchableWithoutFeedback, View} from 'react-native';
+import {
+  Text,
+  TextInput,
+  TouchableOpacity,
+  TouchableWithoutFeedback,
+  View,
+} from 'react-native';
 import styles from './styles';
 import HeaderComponent from '@components/HeaderComponent';
-import {get} from 'lodash';
 import {
   checkPreDefinedValue,
   validOnlyLettersWithSpace,
+  validEmail,
+  NAME_LENGTH,
+  EMAIL_LENGTH,
 } from '@utils/Constants';
 import {ScrollView} from 'native-base';
-import {Dropdown} from 'react-native-element-dropdown';
 import {Colors} from '@theme';
 import ActionButton from '@actionButton';
+import ToastMessage from '@components/ToastMessage';
 
-const titleData = [
-  {label: 'Mr', value: '1'},
-  {label: 'Mrs', value: '2'},
-  {label: 'Miss', value: '3'},
-  {label: 'Dr', value: '4'},
-  {label: 'Ms', value: '5'},
-  {label: 'Prof.', value: '6'},
-];
-export const firstNameInputRef = React.createRef();
 export const lastNameInputRef = React.createRef();
+export const emailIdInputRef = React.createRef();
 
 const Profile = props => {
-  const [value, setValue] = useState(null);
-  const [isFocus, setIsFocus] = useState(false);
-  const [firstNameFocus, setFirstNameFocus] = useState(false);
-  const [firstNameValue, setFirstNameValue] = useState('');
-  const [firstNameValid, setFirstNameValid] = useState(true);
   const [lastNameFocus, setLastNameFocus] = useState(false);
-  const [lastNameValue, setLastNameValue] = useState('');
+  const [lastNameValue, setLastNameValue] = useState('Varun Gandhi');
   const [lastNameValid, setLastNameValid] = useState(true);
-
-  const renderLabel = label => {
-    if (value || isFocus) {
-      return <Text style={styles.label}>{label}</Text>;
-    }
-    return null;
-  };
+  const [emailIdFocus, setEmailIdFocus] = useState(false);
+  const [emailIdValue, setEmailIdValue] = useState('Varungandhi120@gmail.com');
+  const [emailIdValid, setEmailIdValid] = useState(true);
 
   const getShortName = name => {
     if (checkPreDefinedValue(name)) {
@@ -53,23 +44,29 @@ const Profile = props => {
     }
   };
 
-  const onChangeFirstName = text => {
-    setFirstNameValue(text !== '' && text !== undefined ? text.trimLeft() : '');
-    const valid = validOnlyLettersWithSpace(text);
-    setFirstNameValid(text.length > 0 ? valid : true);
-  };
   const onChangeLastName = text => {
     setLastNameValue(text !== '' && text !== undefined ? text.trimLeft() : '');
     const valid = validOnlyLettersWithSpace(text);
     setLastNameValid(text.length > 0 ? valid : true);
   };
 
+  const onChangeEmailId = text => {
+    setEmailIdValue(text !== '' && text !== undefined ? text.trimLeft() : '');
+    const valid = validEmail(text);
+    setEmailIdValid(text.length > 0 ? valid : true);
+  };
+  const onVerify = () => {
+    ToastMessage({message: 'Please check your mail', type: 'success'});
+  };
+  const onSaveChanges = () => {
+    ToastMessage({message: 'Changes are saved', type: 'success'});
+  };
+
   const onBlurInput = () => {
-    console.log('onBlurInput');
-    firstNameInputRef.current.blur();
-    setFirstNameFocus(false);
     lastNameInputRef.current.blur();
+    emailIdInputRef.current.blur();
     setLastNameFocus(false);
+    setEmailIdFocus(false);
   };
 
   const onBack = () => {
@@ -95,70 +92,27 @@ const Profile = props => {
           </View>
         </View>
         <ScrollView style={styles.scroll}>
-          {renderLabel('Title')}
-          <Dropdown
-            style={[styles.dropdown, isFocus && {borderColor: 'gray'}]}
-            placeholderStyle={styles.placeholderStyle}
-            selectedTextStyle={styles.selectedTextStyle}
-            inputSearchStyle={styles.inputSearchStyle}
-            iconStyle={styles.iconStyle}
-            data={titleData}
-            maxHeight={200}
-            labelField="label"
-            valueField="value"
-            placeholder={!isFocus ? 'Title' : ''}
-            value={value}
-            onFocus={() => setIsFocus(true)}
-            onBlur={() => setIsFocus(false)}
-            onChange={item => {
-              setValue(get(item, 'value'));
-              setIsFocus(false);
-            }}
-          />
-
-          <View style={styles.firstNameContainer}>
-            {firstNameFocus || firstNameValue.length > 0 ? (
-              <Text
-                style={[
-                  styles.label,
-                  {color: firstNameValid ? 'green' : 'red'},
-                ]}>
-                {'First Name*'}
-              </Text>
-            ) : null}
-            <TextInput
-              ref={firstNameInputRef}
-              value={firstNameValue}
-              style={styles.firstName}
-              placeholder={firstNameFocus ? '' : 'First Name*'}
-              placeholderTextColor={Colors.primaryDark}
-              onFocus={() => setFirstNameFocus(true)}
-              onBlur={() => setFirstNameFocus(false)}
-              onChangeText={text => onChangeFirstName(text)}
-              contextMenuHidden={true}
-            />
-          </View>
-
           <View style={styles.firstNameContainer}>
             {lastNameFocus || lastNameValue.length > 0 ? (
               <Text
                 style={[
                   styles.label,
-                  {color: lastNameValid ? 'green' : 'red'},
+                  {color: lastNameValid ? Colors.green : Colors.closeRed},
                 ]}>
-                {'Last Name*'}
+                {'Name*'}
               </Text>
             ) : null}
             <TextInput
               ref={lastNameInputRef}
               value={lastNameValue}
               style={styles.firstName}
-              placeholder={lastNameFocus ? '' : 'Last Name*'}
+              placeholder={lastNameFocus ? '' : 'Name*'}
               placeholderTextColor={Colors.primaryDark}
               onFocus={() => setLastNameFocus(true)}
               onBlur={() => setLastNameFocus(false)}
               onChangeText={text => onChangeLastName(text)}
               contextMenuHidden={true}
+              maxLength={NAME_LENGTH}
             />
           </View>
           {/* mobile number */}
@@ -168,9 +122,35 @@ const Profile = props => {
           </View>
 
           {/* email number */}
-          <View style={styles.mobileNumber}>
-            <Text style={styles.label}>{'Email ID'}</Text>
-            <Text style={styles.phoneNumber}>{`varungandhi120@gmail.com`}</Text>
+          <View style={styles.firstNameContainer}>
+            {emailIdFocus || emailIdValue.length > 0 ? (
+              <Text
+                style={[
+                  styles.label,
+                  {color: emailIdValid ? Colors.green : Colors.closeRed},
+                ]}>
+                {'Email ID*'}
+              </Text>
+            ) : null}
+            <View style={styles.emailContainer}>
+              <TextInput
+                ref={emailIdInputRef}
+                value={emailIdValue}
+                style={styles.emailInput}
+                placeholder={emailIdFocus ? '' : 'varun121@gmail.com'}
+                placeholderTextColor={Colors.primaryDark}
+                onFocus={() => setEmailIdFocus(true)}
+                onBlur={() => setEmailIdFocus(false)}
+                onChangeText={text => onChangeEmailId(text)}
+                contextMenuHidden={true}
+                maxLength={EMAIL_LENGTH}
+              />
+              <TouchableOpacity
+                style={styles.verifyContainer}
+                onPress={() => onVerify()}>
+                <Text style={styles.verifyText}>{'VERIFY'}</Text>
+              </TouchableOpacity>
+            </View>
           </View>
 
           {/* save changes */}
@@ -181,7 +161,7 @@ const Profile = props => {
           text={'SAVE CHANGES'}
           textStyle={styles.saveText}
           // disabled={this.disableRejectResponse}
-          // onPress={() => onCrossModal()}
+          onPress={() => onSaveChanges()}
         />
       </View>
     </TouchableWithoutFeedback>

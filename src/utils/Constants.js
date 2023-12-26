@@ -1,5 +1,8 @@
 export const APPLE_ID = '1522416942';
 export const productName = 'Advaita';
+export const NAME_LENGTH = 250;
+export const EMAIL_LENGTH = 100;
+
 export const settings = [
   {
     label: 'ACCOUNT',
@@ -18,7 +21,7 @@ export const settings = [
     label: 'HELP & MORE',
     item: [
       {itemLabel: 'Help', iconName: '', iconType: ''},
-      {itemLabel: 'Rate our app', iconName: '', iconType: ''},
+      // {itemLabel: 'Rate our app', iconName: '', iconType: ''},
       {
         itemLabel: 'SeparateLine',
         iconName: '',
@@ -35,12 +38,27 @@ export const settings = [
   },
 ];
 
-export const validOnlyNumber = val => {
-  const pattern = new RegExp('(^[0-9]{1,4}$)');
+export const validOnlyNumber = (val, maxLength) => {
+  const pattern = new RegExp(`(^[0-9]{1,${maxLength}}$)`);
   return val && pattern.test(val);
 };
+
+export const validNumber = val => {
+  const pattern = new RegExp('(^[0-9]{1,10}$)');
+  return val && pattern.test(val);
+};
+
+export const validEmail = val => {
+  const pattern = new RegExp(/[a-z0-9]+@[a-z]+.com/g);
+  return val && pattern.test(val);
+};
+
 export const validOnlyLettersWithSpace = val => {
   const pattern = new RegExp(/^[a-zA-Z\s]*$/);
+  return val && pattern.test(val);
+};
+export const validOnlyLettersAndNumberWithSpace = val => {
+  const pattern = new RegExp(/^[a-zA-Z0-9\s]*$/);
   return val && pattern.test(val);
 };
 export const otpLength = 4;
