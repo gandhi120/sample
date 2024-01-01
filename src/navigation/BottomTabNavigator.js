@@ -1,7 +1,7 @@
 import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import HomeStackNavigator from './stack-navigators/HomeStackNavigator';
-import AccountStackNavigator from './stack-navigators/AccountStackNavigator';
+import LikeStackNavigator from './stack-navigators/LikeStackNavigator';
 import CustomIcon from '@customIcon';
 import {getFocusedRouteNameFromRoute} from '@react-navigation/native';
 import {routing} from '@utils/routeConstant';
@@ -9,7 +9,7 @@ import BottomTabs from '@bottomTabs';
 
 const Tab = createBottomTabNavigator();
 
-const bottomTab = route => <BottomTabs />;
+const bottomTab = props => <BottomTabs route={props} />;
 
 const BottomTabNavigators = props => {
   const renderIcon = iconName => {
@@ -27,10 +27,10 @@ const BottomTabNavigators = props => {
         tabBarStyle: getTabBarStyle(route),
         tabBarIcon: () => renderIcon('home'),
       })}
-      tabBar={_props => bottomTab()}>
+      tabBar={props => bottomTab(props)}>
       <Tab.Screen name="HomeStack" component={HomeStackNavigator} />
       {/* <Tab.Screen name="BookStack" component={BookStackNavigator} /> */}
-      <Tab.Screen name="Account" component={AccountStackNavigator} />
+      <Tab.Screen name="Like" component={LikeStackNavigator} />
     </Tab.Navigator>
   );
 };

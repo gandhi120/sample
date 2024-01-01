@@ -3,6 +3,9 @@ export const productName = 'Advaita';
 export const NAME_LENGTH = 250;
 export const EMAIL_LENGTH = 100;
 
+export const CONTACT_US_NUMBER = '9725471103';
+export const CONTACT_US_NAME = 'Varun';
+
 export const settings = [
   {
     label: 'ACCOUNT',

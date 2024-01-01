@@ -17,10 +17,8 @@ const styles = StyleSheet.create({
   loginButtonContainer: {
     width: DeviceUiInfo.moderateScale(50),
     height: DeviceUiInfo.moderateScale(30),
-    // backgroundColor: Colors.blue,
     alignItems: 'flex-end',
     justifyContent: 'center',
-    // borderRadius: DeviceUiInfo.moderateScale(10),
   },
   container: {
     marginHorizontal: 0,
@@ -97,6 +95,10 @@ const styles = StyleSheet.create({
   userIcon: {
     color: Colors.white,
     fontSize: DeviceUiInfo.verticalScale(20),
+  },
+  indexOneView: {
+    flex: 1,
+    marginBottom: DeviceUiInfo.moderateScale(45),
   },
 });
 export default styles;

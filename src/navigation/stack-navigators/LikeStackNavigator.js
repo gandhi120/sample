@@ -1,19 +1,19 @@
 import React, {Component} from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import Account from '@account';
+import Like from '@like';
 const Stack = createNativeStackNavigator();
 
-class AccountStackNavigator extends Component {
+class LikeStackNavigator extends Component {
   render() {
     return (
       <Stack.Navigator
         screenOptions={{
           headerShown: false,
         }}>
-        <Stack.Screen name="Book" component={Account} />
+        <Stack.Screen name="Like" component={Like} />
       </Stack.Navigator>
     );
   }
 }
 
-export default AccountStackNavigator;
+export default LikeStackNavigator;

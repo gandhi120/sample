@@ -5,12 +5,18 @@ import {
   Text,
   TouchableOpacity,
   TouchableWithoutFeedback,
+  Linking,
 } from 'react-native';
 import styles from './styles';
 import Modal from 'react-native-modal';
 import {inject, observer} from 'mobx-react';
 import ActionButton from '@actionButton';
-import {productName, checkPreDefinedValue, settings} from '@utils/Constants';
+import {
+  productName,
+  checkPreDefinedValue,
+  settings,
+  CONTACT_US_NUMBER,
+} from '@utils/Constants';
 import {get, startCase} from 'lodash';
 import CustomIcon from '@customIcon';
 import {routing} from '@utils/routeConstant';
@@ -21,11 +27,16 @@ const AfterLogin = inject('userStore')(
 
     const onSettings = (label = '') => {
       const {onClose} = props;
-      onClose();
+      if (label !== 'App Version 1.0.0') {
+        onClose();
+      }
+
       if (label === routing.PROFILE) {
         navigation.navigate(routing.PROFILE, {});
-      } else if (routing.ADDRESS) {
+      } else if (label === routing.ADDRESS) {
         navigation.navigate(routing.ADDRESS, {});
+      } else if (label === 'Help') {
+        Linking.openURL(`tel:${CONTACT_US_NUMBER}`);
       }
     };
 

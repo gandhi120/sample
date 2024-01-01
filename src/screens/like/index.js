@@ -2,12 +2,12 @@ import React from 'react';
 import {Text, View} from 'react-native';
 import styles from './styles';
 
-const Account = () => {
+const Like = () => {
   return (
     <View style={styles.rootContainer}>
-      <Text>ACCOUNT</Text>
+      <Text>Like</Text>
     </View>
   );
 };
 
-export default Account;
+export default Like;
