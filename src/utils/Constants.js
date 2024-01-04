@@ -1,6 +1,7 @@
 export const APPLE_ID = '1522416942';
 export const productName = 'Advaita';
 export const NAME_LENGTH = 250;
+export const MAX_TEXTAREA_LENGTH = 255;
 export const EMAIL_LENGTH = 100;
 
 export const CONTACT_US_NUMBER = '9725471103';

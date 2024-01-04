@@ -1,16 +1,18 @@
 import React, {useEffect, useState} from 'react';
-
-import {View} from 'react-native';
+import {RefreshControl, TextInput, View} from 'react-native';
 import HeaderComponent from '@components/HeaderComponent';
 import styles from './styles';
 import ActionButton from '@actionButton';
 import LoginModal from '@loginModal';
 import AfterLogin from '@afterLogin';
 import {inject, observer} from 'mobx-react';
-import {productName} from '@utils/Constants';
-import {get} from 'lodash';
+import {productName, MAX_TEXTAREA_LENGTH} from '@utils/Constants';
+import {debounce, get} from 'lodash';
 import {FlashList} from '@shopify/flash-list';
 import ProductList from '@productList';
+import CustomIcon from '@customIcon';
+import {Colors} from '@theme';
+import ProductLoader from '@productLoader';
 
 const Home = inject('userStore')(
   observer(props => {
@@ -18,6 +20,9 @@ const Home = inject('userStore')(
     const [loginModalVisible, setLoginModalVisible] = useState(false);
     const [afterLoginVisible, setAfterLoginVisible] = useState(false);
     const [productList, setProductList] = useState([]);
+    const [filterProductList, setFilterProductList] = useState([]);
+    const [debounceTextChange, setDebounceTextChange] = useState(null);
+    const [loader, setLoader] = useState(true);
 
     useEffect(() => {
       getCloth();
@@ -27,6 +32,10 @@ const Home = inject('userStore')(
       const clothAllData = await fetch('https://fakestoreapi.com/products');
       const convertJsonCloth = await clothAllData.json();
       setProductList(convertJsonCloth);
+      setFilterProductList(convertJsonCloth);
+      setTimeout(() => {
+        setLoader(false);
+      }, 2000);
     };
 
     const renderRightComponent = () => {
@@ -47,9 +56,64 @@ const Home = inject('userStore')(
       );
     };
 
+    const textAreaChange = text => {
+      if (text.length === 0) {
+        setProductList(filterProductList);
+      }
+      if (debounceTextChange) {
+        debounceTextChange.cancel();
+      }
+      const de = debounce(() => {
+        // this.setLoader(true);
+        getFilterData(text);
+      }, 500);
+      setDebounceTextChange(de);
+    };
+
+    const getFilterData = text => {
+      const convertText = text.trim();
+      const lastProductList = filterProductList.filter(product =>
+        get(product, 'title').toUpperCase().includes(convertText.toUpperCase()),
+      );
+
+      if (lastProductList.length > 0) {
+        setProductList(lastProductList);
+      } else {
+        setProductList([]);
+      }
+    };
+
+    const renderSearchBar = () => {
+      return (
+        <View style={styles.searchHeaderContainer}>
+          <View style={styles.searchContainer}>
+            <View style={styles.searchIconContainer}>
+              <CustomIcon
+                name={'search'}
+                type={'digiQc'}
+                style={styles.searchIcon}
+              />
+            </View>
+            <View style={styles.searchTextContainer}>
+              <TextInput
+                placeholder="Search"
+                placeholderTextColor={Colors.strokeColor}
+                autoCorrect={false}
+                autoCapitalize="none"
+                onChangeText={textAreaChange}
+                style={styles.searchTextInput}
+                maxLength={MAX_TEXTAREA_LENGTH}
+                aria-disabled={loader}
+              />
+            </View>
+          </View>
+        </View>
+      );
+    };
+
     const rowRenderer = ({item, index, target, extraData}) => {
-      // if (index === 0) {
-      //   return this.renderSearchBar();
+      // if (index === 0 || index === 1) {
+      // return renderSearchBar();
       // } else if (index === 1) {
       //   const {routes, tabIndex} = this.state;
       //   return (
@@ -78,40 +142,48 @@ const Home = inject('userStore')(
       // }
     };
 
+    const onRefresh = () => {
+      setLoader(true);
+      getCloth();
+    };
+
     return (
       <View style={styles.rootContainer}>
         <HeaderComponent
           headerTitle={productName}
           RightComponent={() => renderRightComponent()}
         />
-        {/* <Text>{'HOME screen!'}</Text> */}
-        {/* <View style={styles.rootContainer}> */}
-        <View style={styles.indexOneView}>
-          <FlashList
-            estimatedItemSize={200}
-            renderItem={({item, index, target, extraData}) =>
-              rowRenderer({item, index, target, extraData})
-            }
-            data={productList}
-            numColumns={2}
-            // onEndReached={this.loadMore}
-            onEndReachedThreshold={0.1}
-            showsVerticalScrollIndicator={true}
-            refreshing={false}
+        {renderSearchBar()}
+        {loader ? (
+          <ProductLoader />
+        ) : (
+          <View style={styles.indexOneView}>
+            <FlashList
+              estimatedItemSize={200}
+              renderItem={({item, index, target, extraData}) =>
+                rowRenderer({item, index, target, extraData})
+              }
+              data={productList}
+              numColumns={2}
+              // onEndReached={this.loadMore}
+              onEndReachedThreshold={0.1}
+              showsVerticalScrollIndicator={true}
+              refreshing={false}
+              refreshControl={
+                <RefreshControl
+                  refreshing={false}
+                  onRefresh={() => onRefresh()}
+                />
+              }
+              // stickyHeaderIndices={[1]}
+              // scrollEnabled={get(this.toBeApprovedList, '[0]') !== 'LOADER'}
+              // extendedState={{
+              //   searchText: this.searchText,
+              // }}
+            />
+          </View>
+        )}
 
-            // refreshControl={
-            //   <RefreshControl
-            //     refreshing={false}
-            //     onRefresh={() => this.onRefresh()}
-            //   />
-            // }
-            // stickyHeaderIndices={[1]}
-            // scrollEnabled={get(this.toBeApprovedList, '[0]') !== 'LOADER'}
-            // extendedState={{
-            //   searchText: this.searchText,
-            // }}
-          />
-        </View>
         {/* </View> */}
         <LoginModal
           visible={loginModalVisible}

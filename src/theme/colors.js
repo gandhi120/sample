@@ -22,6 +22,7 @@ const colors = {
   primaryHeader: '#202A3F',
   gray: '#e6e9ed',
   green: '#096b17',
+  pageBackground: '#F2F4F7',
 };
 
 export default colors;

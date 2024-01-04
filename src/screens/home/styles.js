@@ -100,5 +100,44 @@ const styles = StyleSheet.create({
     flex: 1,
     marginBottom: DeviceUiInfo.moderateScale(45),
   },
+  searchHeaderContainer: {
+    paddingTop: DeviceUiInfo.moderateScale(15),
+    paddingBottom: DeviceUiInfo.moderateScale(11),
+    backgroundColor: Colors.pageBackground,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    paddingHorizontal: DeviceUiInfo.moderateScale(11),
+    width: '100%',
+  },
+  searchContainer: {
+    flex: 1,
+    height: DeviceUiInfo.moderateScale(43),
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingHorizontal: DeviceUiInfo.moderateScale(10),
+    borderRadius: DeviceUiInfo.moderateScale(200),
+    backgroundColor: Colors.white,
+  },
+  searchIconContainer: {
+    paddingLeft: DeviceUiInfo.moderateScale(10),
+  },
+  searchIcon: {
+    color: Colors.textGrayColor,
+    fontSize: DeviceUiInfo.moderateScale(18),
+  },
+  searchTextContainer: {
+    flex: 1,
+    color: Colors.strokeColor,
+    justifyContent: 'center',
+  },
+  searchTextInput: {
+    justifyContent: 'center',
+    paddingLeft: DeviceUiInfo.moderateScale(10),
+    color: Colors.textGrayColor,
+    fontFamily: type.rubikRegular,
+    fontSize: DeviceUiInfo.moderateScale(16),
+  },
 });
 export default styles;

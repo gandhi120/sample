@@ -78,10 +78,10 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    width: DeviceUiInfo.verticalScale(45),
+    width: DeviceUiInfo.verticalScale(50),
     height: DeviceUiInfo.verticalScale(20),
     borderRadius: DeviceUiInfo.verticalScale(20),
-    paddingHorizontal: DeviceUiInfo.verticalScale(2),
+    paddingHorizontal: DeviceUiInfo.verticalScale(3),
   },
   rateText: {
     fontFamily: type.rubikSemiBold,

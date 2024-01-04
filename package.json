@@ -12,7 +12,15 @@
     "podInstall": "cd ios && pod install && cd ../",
     "cleanGradle": "cd android && ./gradlew clean && cd ../",
     "podUnInstall": "cd ios && pod deintegrate && cd ../",
-    "podSetup": "npm run podUnInstall && npm run podInstall"
+    "podSetup": "npm run podUnInstall && npm run podInstall",
+    "assembleRelease": "cd android && ./gradlew assembleRelease && cd ../",
+    "bundleRelease": "cd android && ./gradlew bundleRelease && cd ../",
+    "installRelease": "cd android && ./gradlew installRelease && cd ../",
+    "generateKey": "node src/utils/encryption/generate.js",
+    "debug": "react-native run-android",
+    "debug-release": "react-native run-android --variant=release",
+    "release-bundle": "cd android && ENVFILE=.env ./gradlew bundleRelease",
+    "release": "cd android && ./gradlew clean && ENVFILE=.env ./gradlew assembleRelease"
   },
   "dependencies": {
     "@babel/plugin-proposal-decorators": "7.22.3",
