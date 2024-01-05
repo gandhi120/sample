@@ -96,8 +96,8 @@ const Home = inject('userStore')(
             </View>
             <View style={styles.searchTextContainer}>
               <TextInput
-                placeholder="Search"
-                placeholderTextColor={Colors.strokeColor}
+                placeholder="Search for products"
+                placeholderTextColor={Colors.text}
                 autoCorrect={false}
                 autoCapitalize="none"
                 onChangeText={textAreaChange}

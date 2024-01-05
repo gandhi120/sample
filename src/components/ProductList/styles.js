@@ -14,8 +14,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   productImage: {
-    width: '100%',
-    height: DeviceUiInfo.moderateScale(200),
+    height: DeviceUiInfo.moderateScale(250),
+    // marginBottom: DeviceUiInfo.moderateScale(45),
+    width: (screenWidth - 20) / 2,
+    // backgroundColor: 'yellow',
   },
   imageContainer: {
     backgroundColor: Colors.white,
@@ -32,21 +34,7 @@ const styles = StyleSheet.create({
     paddingLeft: DeviceUiInfo.moderateScale(6),
     paddingRight: DeviceUiInfo.moderateScale(10),
   },
-  titleText: {
-    fontFamily: type.rubikMedium,
-    fontSize: DeviceUiInfo.moderateScale(13),
-    color: Colors.white,
-  },
-  subTitle: {
-    fontFamily: type.rubikRegular,
-    fontSize: DeviceUiInfo.moderateScale(12),
-    color: Colors.white,
-  },
-  price: {
-    fontFamily: type.rubikMedium,
-    fontSize: DeviceUiInfo.moderateScale(12),
-    color: Colors.white,
-  },
+
   infoRoot: {
     flexDirection: 'row',
     backgroundColor: 'black',
@@ -87,6 +75,31 @@ const styles = StyleSheet.create({
     fontFamily: type.rubikSemiBold,
     fontSize: DeviceUiInfo.moderateScale(12),
     color: Colors.white,
+  },
+  mainContainer: {
+    backgroundColor: 'white',
+    marginBottom: DeviceUiInfo.moderateScale(45),
+    width: (screenWidth - 20) / 2,
+    borderRadius: DeviceUiInfo.moderateScale(4),
+  },
+  titleText: {
+    fontFamily: type.rubikMedium,
+    fontSize: DeviceUiInfo.moderateScale(13),
+    color: Colors.black,
+    marginTop: DeviceUiInfo.moderateScale(10),
+  },
+  subTitle: {
+    fontFamily: type.rubikRegular,
+    fontSize: DeviceUiInfo.moderateScale(12),
+    color: Colors.text,
+    marginTop: DeviceUiInfo.moderateScale(5),
+  },
+
+  price: {
+    fontFamily: type.rubikMedium,
+    fontSize: DeviceUiInfo.moderateScale(12),
+    color: Colors.black,
+    marginTop: DeviceUiInfo.moderateScale(7),
   },
 });
 

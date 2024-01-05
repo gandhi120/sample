@@ -99,6 +99,8 @@ const styles = StyleSheet.create({
   indexOneView: {
     flex: 1,
     marginBottom: DeviceUiInfo.moderateScale(45),
+    paddingLeft: DeviceUiInfo.moderateScale(6.66),
+    backgroundColor: Colors.white,
   },
   searchHeaderContainer: {
     paddingTop: DeviceUiInfo.moderateScale(15),
