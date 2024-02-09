@@ -13,8 +13,10 @@ export default StyleSheet.create({
     flexDirection: 'row',
   },
   eqcListView: {
-    width: (screenWidth + 0.5) / 2,
-    borderWidth: 0.5,
+    backgroundColor: Colors.pageBackground,
+    width: (screenWidth - 20) / 2,
     height: DeviceUiInfo.moderateScale(300),
+    marginBottom: DeviceUiInfo.moderateScale(45),
+    marginLeft: DeviceUiInfo.moderateScale(6.66),
   },
 });

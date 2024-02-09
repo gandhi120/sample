@@ -1,6 +1,6 @@
 import {createIconSetFromIcoMoon} from 'react-native-vector-icons';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
-import Ionicons from 'react-native-vector-icons/Ionicons';
+// import Ionicons from 'react-native-vector-icons/Ionicons';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import sampleIconConfig from '@theme/sample.json';
 import {Platform} from 'react-native';
@@ -18,9 +18,10 @@ const CustomIcon = props => {
     return <Sample {...props} />;
   } else if (props.type === 'MaterialIcons') {
     return <MaterialIcons {...props} />;
-  } else {
-    return <Ionicons {...props} />;
   }
+  // else {
+  //   return <Ionicons {...props} />;
+  // }
 };
 
 CustomIcon.propTypes = {

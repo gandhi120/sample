@@ -11,7 +11,7 @@ export const settings = [
   {
     label: 'ACCOUNT',
     item: [
-      {id: 1, itemLabel: 'Profile', iconName: 'user', iconType: 'FontAwesome'},
+      {id: 1, itemLabel: 'Profile', iconName: 'user', iconType: 'sample'},
       {id: 2, itemLabel: 'Address', iconName: 'location', iconType: 'sample'},
       {
         id: 3,

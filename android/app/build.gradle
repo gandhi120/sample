@@ -102,6 +102,10 @@ android {
         versionName "1.0"
     }
 
+     buildFeatures {
+        viewBinding = true
+    }
+
     splits {
         abi {
             reset()

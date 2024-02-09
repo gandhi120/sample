@@ -49,7 +49,7 @@ const Home = inject('userStore')(
             }
             buttonStyle={styles.loginButtonContainer}
             icon="user"
-            iconType="FontAwesome"
+            iconType="sample"
             iconStyle={styles.userIcon}
           />
         </View>
@@ -90,7 +90,7 @@ const Home = inject('userStore')(
             <View style={styles.searchIconContainer}>
               <CustomIcon
                 name={'search'}
-                type={'digiQc'}
+                type={'sample'}
                 style={styles.searchIcon}
               />
             </View>
