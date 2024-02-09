@@ -151,6 +151,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     marginHorizontal: DeviceUiInfo.verticalScale(10),
+    marginVertical: DeviceUiInfo.verticalScale(10),
   },
   emptyBox: {
     flex: 1,

@@ -43,7 +43,7 @@ const Home = inject('userStore')(
         <View>
           <ActionButton
             onPress={() =>
-              userStore.numberVerified
+              !userStore.numberVerified
                 ? setAfterLoginVisible(true)
                 : setLoginModalVisible(true)
             }
