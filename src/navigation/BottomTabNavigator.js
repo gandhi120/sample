@@ -28,9 +28,9 @@ const BottomTabNavigators = props => {
         tabBarIcon: () => renderIcon('home'),
       })}
       tabBar={props => bottomTab(props)}>
-      <Tab.Screen name="HomeStack" component={HomeStackNavigator} />
+      <Tab.Screen name="HomeTab" component={HomeStackNavigator} />
       {/* <Tab.Screen name="BookStack" component={BookStackNavigator} /> */}
-      <Tab.Screen name="Like" component={LikeStackNavigator} />
+      <Tab.Screen name="LikeTab" component={LikeStackNavigator} />
     </Tab.Navigator>
   );
 };

@@ -24,12 +24,12 @@ const BottomTabs = props => {
 
   const onLike = () => {
     const {navigation} = props.route;
-    navigation.jumpTo(routing.LIKE, {});
+    navigation.jumpTo(routing.LIKE_TAB, {});
   };
 
   const onHome = () => {
     const {navigation} = props.route;
-    navigation.jumpTo(routing.HOME_STACK, {});
+    navigation.jumpTo(routing.HOME_TAB, {});
   };
 
   console.log('screen', screen);

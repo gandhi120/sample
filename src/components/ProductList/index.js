@@ -7,6 +7,9 @@ import ActionButton from '@actionButton';
 
 const ProductList = inject('userStore')(
   observer(props => {
+    const onLike = product => {
+      // console.log('addToItemCart', addToItemCart());
+    };
     const {product} = props;
 
     return (
@@ -17,6 +20,7 @@ const ProductList = inject('userStore')(
             icon="like"
             iconType="sample"
             iconStyle={styles.likeIcon}
+            onPress={() => onLike(product)}
           />
           <View style={styles.rateCountContainer}>
             <Text style={styles.rateText}>{`${get(
