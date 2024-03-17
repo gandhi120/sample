@@ -7,16 +7,18 @@ import LoginModal from '@loginModal';
 import AfterLogin from '@afterLogin';
 import {inject, observer} from 'mobx-react';
 import {productName, MAX_TEXTAREA_LENGTH} from '@utils/Constants';
-import {debounce, get} from 'lodash';
+import {debounce, get, isEmpty} from 'lodash';
 import {FlashList} from '@shopify/flash-list';
 import ProductList from '@productList';
 import CustomIcon from '@customIcon';
 import {Colors} from '@theme';
 import ProductLoader from '@productLoader';
+import {useSelector} from 'react-redux';
 
 const Home = inject('userStore')(
   observer(props => {
     const {userStore} = props;
+    const {userData} = useSelector(State => State.auth);
     const [loginModalVisible, setLoginModalVisible] = useState(false);
     const [afterLoginVisible, setAfterLoginVisible] = useState(false);
     const [productList, setProductList] = useState([]);
@@ -40,19 +42,17 @@ const Home = inject('userStore')(
 
     const renderRightComponent = () => {
       return (
-        <View>
-          <ActionButton
-            onPress={() =>
-              !userStore.numberVerified
-                ? setAfterLoginVisible(true)
-                : setLoginModalVisible(true)
-            }
-            buttonStyle={styles.loginButtonContainer}
-            icon="user"
-            iconType="sample"
-            iconStyle={styles.userIcon}
-          />
-        </View>
+        <ActionButton
+          onPress={() =>
+            !userStore.numberVerified
+              ? setAfterLoginVisible(true)
+              : setLoginModalVisible(true)
+          }
+          buttonStyle={styles.loginButtonContainer}
+          icon={isEmpty(userData) ? 'user' : 'activeUser'}
+          iconType="sample"
+          iconStyle={styles.userIcon}
+        />
       );
     };
 

@@ -1,6 +1,7 @@
 import {View} from 'native-base';
 import React, {useState, useRef, useEffect} from 'react';
 import {
+  ActivityIndicator,
   Keyboard,
   SafeAreaView,
   Text,
@@ -19,6 +20,8 @@ import {inject, observer} from 'mobx-react';
 // import {action, makeObservable, observable} from 'mobx';
 import ActionButton from '@actionButton';
 import {validOnlyNumber, otpLength, productName} from '@utils/Constants';
+import {useDispatch, useSelector} from 'react-redux';
+import {login} from '@redux/feature/AuthSlice';
 
 let formState = {};
 
@@ -36,7 +39,11 @@ formState = new FormState({
 const LoginModal = inject('userStore')(
   observer(props => {
     const {userStore} = props;
-    console.log('userStore.numberVerified112', userStore);
+    const dispatch = useDispatch();
+    const {userData, isLoading, isSuccess, isError} = useSelector(
+      State => State.auth,
+    );
+
     /* UI Design Code */
     const [sendForOtp, setSendForOtp] = useState(false);
     const [verificationDebounce, setVerificationDebounce] = useState(true);
@@ -56,7 +63,6 @@ const LoginModal = inject('userStore')(
         }
       }, 1000);
       return () => {
-        console.log('return');
         clearInterval(interval);
       };
     }, [count]);
@@ -65,7 +71,6 @@ const LoginModal = inject('userStore')(
     const et2 = useRef();
     const et3 = useRef();
     const et4 = useRef();
-    console.log('et1', et1);
     const form = new Form(formState);
 
     const resetError = () => {
@@ -127,10 +132,7 @@ const LoginModal = inject('userStore')(
         phoneNumber.length === 10 &&
         !formState.$.phone.error
       ) {
-        console.log('number111');
         const number = normalizePhoneNumber(phoneNumber);
-        console.log('number', number);
-
         const body = {
           country: 'IN',
           phoneNo: validateAndAddCountryCode(number),
@@ -138,6 +140,11 @@ const LoginModal = inject('userStore')(
         setSendForOtp(true);
         setCount(60);
         setVerificationDebounce(true);
+        const params = {
+          username: 'kminchelle',
+          password: '0lelplR',
+        };
+        dispatch(login(params));
 
         // logger.info('--sendMobileNumberForOtp body:--' + JSON.stringify(body));
         // this.setIndicator(true);
@@ -276,7 +283,6 @@ const LoginModal = inject('userStore')(
               style={styles.otpInput}
               ref={et3}
               onChangeText={text => {
-                console.log('text', text);
                 setOtpThreeValue(text);
                 text !== '' ? et4.current.focus() : null;
                 setShowOtpError(false);
@@ -405,9 +411,14 @@ const LoginModal = inject('userStore')(
               {/* {this.showIndicator ? (
               <ActivityIndicator size="large" animating={true} color="white" />
             ) : ( */}
-              <Text style={styles.nextButtonText}>
-                {sendForOtp ? 'Verify' : 'Send me the code'}
-              </Text>
+              {isLoading ? (
+                <ActivityIndicator size="small" color={Colors.black} />
+              ) : (
+                <Text style={styles.nextButtonText}>
+                  {sendForOtp ? 'Verify' : 'Send me the code'}
+                </Text>
+              )}
+
               {/* )} */}
             </TouchableOpacity>
             {sendForOtp ? (
