@@ -66,7 +66,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    width: DeviceUiInfo.verticalScale(50),
+    width: DeviceUiInfo.verticalScale(screenWidth / 6),
     height: DeviceUiInfo.verticalScale(20),
     borderRadius: DeviceUiInfo.verticalScale(20),
     paddingHorizontal: DeviceUiInfo.verticalScale(3),
@@ -75,6 +75,12 @@ const styles = StyleSheet.create({
     fontFamily: type.rubikSemiBold,
     fontSize: DeviceUiInfo.moderateScale(12),
     color: Colors.white,
+  },
+  star: {
+    fontFamily: type.rubikSemiBold,
+    fontSize: DeviceUiInfo.moderateScale(12),
+    color: Colors.white,
+    marginRight: DeviceUiInfo.moderateScale(12),
   },
   mainContainer: {
     backgroundColor: 'white',

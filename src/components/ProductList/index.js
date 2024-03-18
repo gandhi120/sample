@@ -7,11 +7,9 @@ import ActionButton from '@actionButton';
 
 const ProductList = inject('userStore')(
   observer(props => {
-    const onLike = product => {
-      // console.log('addToItemCart', addToItemCart());
-    };
+    const onLike = product => {};
     const {product} = props;
-
+    console.log('product', product);
     return (
       <View style={styles.mainContainer}>
         <View style={styles.imageContainer}>
@@ -23,26 +21,24 @@ const ProductList = inject('userStore')(
             onPress={() => onLike(product)}
           />
           <View style={styles.rateCountContainer}>
-            <Text style={styles.rateText}>{`${get(
-              product,
-              'rating.rate',
-            )}*`}</Text>
-            <Text style={styles.rateText}>{get(product, 'rating.count')}</Text>
+            <Text style={styles.rateText}>{`${get(product, 'rating')}`}</Text>
+            <Text style={styles.star}>{'*'}</Text>
+            <Text style={styles.rateText}>{get(product, 'stock')}</Text>
           </View>
 
           <Image
             source={{
-              uri: get(product, 'image'),
+              uri: get(product, 'thumbnail'),
             }}
             style={styles.productImage}
             resizeMode="center"
           />
         </View>
-        <Text style={styles.titleText}>
-          {upperCase(get(product, 'category'))}
+        <Text numberOfLines={1} style={styles.titleText}>
+          {upperCase(get(product, 'title'))}
         </Text>
-        <Text numberOfLines={2} style={styles.subTitle}>
-          {upperFirst(get(product, 'title'))}
+        <Text numberOfLines={1} style={styles.subTitle}>
+          {upperFirst(get(product, 'description'))}
         </Text>
         <Text style={styles.price}>{`₹${get(product, 'price')}`}</Text>
       </View>
