@@ -1,17 +1,23 @@
 import React from 'react';
-import {Image, Text, View} from 'react-native';
+import {Image, Text, TouchableOpacity, View} from 'react-native';
 import styles from './styles';
 import {inject, observer} from 'mobx-react';
 import {get, upperCase, upperFirst} from 'lodash';
 import ActionButton from '@actionButton';
+import {routing} from '@utils/routeConstant';
 
 const ProductList = inject('userStore')(
   observer(props => {
     const onLike = product => {};
+    const onProduct = () => {
+      const {product} = props;
+      console.log('productId', product);
+      const {navigation} = props;
+      navigation.navigate(routing.SINGLE_PRODUCT, {navigation});
+    };
     const {product} = props;
-    console.log('product', product);
     return (
-      <View style={styles.mainContainer}>
+      <TouchableOpacity style={styles.mainContainer} onPress={onProduct}>
         <View style={styles.imageContainer}>
           <ActionButton
             buttonStyle={styles.likeButton}
@@ -41,7 +47,7 @@ const ProductList = inject('userStore')(
           {upperFirst(get(product, 'description'))}
         </Text>
         <Text style={styles.price}>{`₹${get(product, 'price')}`}</Text>
-      </View>
+      </TouchableOpacity>
     );
   }),
 );

@@ -5,6 +5,7 @@ import Animated from 'react-native-reanimated';
 import {navigationRef} from '@src/App';
 import ActionButton from '@actionButton';
 import {routing} from '@utils/routeConstant';
+import {includes} from 'lodash';
 
 const BottomTabs = props => {
   const [screen, setScreen] = useState('');
@@ -38,8 +39,9 @@ const BottomTabs = props => {
       style={[
         styles.tabBarContainer,
         {
-          display:
-            screen === 'Profile' || screen === 'Address' ? 'none' : 'flex',
+          display: includes(['SingleProduct', 'Profile', 'Address'], screen)
+            ? 'none'
+            : 'flex',
         },
       ]}>
       <View style={styles.rootContainer}>

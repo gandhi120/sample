@@ -4,4 +4,5 @@ export const routing = {
   ADDRESS: 'Address',
   LIKE_TAB: 'LikeTab',
   HOME_TAB: 'HomeTab',
+  SINGLE_PRODUCT: 'SingleProduct',
 };

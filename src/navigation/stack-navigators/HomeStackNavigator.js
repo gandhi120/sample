@@ -1,8 +1,10 @@
 import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import Home from '@home';
+import SingleProduct from '@singleProduct';
 import Profile from '@profile';
 import Address from '@address';
+import {routing} from '@utils/routeConstant';
 
 const Stack = createNativeStackNavigator();
 
@@ -15,6 +17,11 @@ const HomeStackNavigator = props => {
       <Stack.Screen
         name="Home"
         component={Home}
+        navigation={props.navigation}
+      />
+      <Stack.Screen
+        name={routing.SINGLE_PRODUCT}
+        component={SingleProduct}
         navigation={props.navigation}
       />
       <Stack.Screen

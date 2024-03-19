@@ -109,6 +109,7 @@ const Home = props => {
 
   const rowRenderer = ({item, index, target, extraData}) => {
     console.log('item123', item);
+    const {navigation} = props;
     // if (index === 0 || index === 1) {
     // return renderSearchBar();
     // } else if (index === 1) {
@@ -134,7 +135,7 @@ const Home = props => {
     // } else if (item === 'NO_DATA') {
     //   return this.renderNoDataFound();
     // } else {
-    return <ProductList product={item} />;
+    return <ProductList navigation={navigation} product={item} />;
     // }
     // }
   };
