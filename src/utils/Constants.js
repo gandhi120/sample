@@ -41,6 +41,14 @@ export const settings = [
     ],
   },
 ];
+export const calculatePerMonth = val => {
+  const perMonth = Math.floor(val / 12);
+  return replaceIndianFormate(perMonth);
+};
+export const replaceIndianFormate = val => {
+  const finalValue = val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  return finalValue;
+};
 
 export const validOnlyNumber = (val, maxLength) => {
   const pattern = new RegExp(`(^[0-9]{1,${maxLength}}$)`);
