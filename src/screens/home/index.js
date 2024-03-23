@@ -13,7 +13,7 @@ import CustomIcon from '@customIcon';
 import {Colors} from '@theme';
 import ProductLoader from '@productLoader';
 import {useDispatch, useSelector} from 'react-redux';
-import {getAllProducts} from '@redux/feature/ProductSlice';
+import {getAllProducts, onPageRefresh} from '@redux/feature/ProductSlice';
 
 const Home = props => {
   const [loginModalVisible, setLoginModalVisible] = useState(false);
@@ -25,10 +25,11 @@ const Home = props => {
 
   const dispatch = useDispatch();
   const {userData} = useSelector(State => State.auth);
-  const {productData, isLoading} = useSelector(State => State.product);
-
+  const {productData, isLoading, limit, skip, refresh} = useSelector(
+    State => State.product,
+  );
   useEffect(() => {
-    dispatch(getAllProducts());
+    dispatch(getAllProducts({limit, skip}));
   }, []);
 
   const renderRightComponent = () => {
@@ -108,43 +109,24 @@ const Home = props => {
   };
 
   const rowRenderer = ({item, index, target, extraData}) => {
-    console.log('item123', item);
     const {navigation} = props;
-    // if (index === 0 || index === 1) {
-    // return renderSearchBar();
-    // } else if (index === 1) {
-    //   const {routes, tabIndex} = this.state;
-    //   return (
-    //     <View style={styles.indexOneView}>
-    //       <TabView
-    //         style={styles.tabView}
-    //         navigationState={{index: tabIndex, routes}}
-    //         renderScene={this.renderScene}
-    //         onIndexChange={this.onTabChange}
-    //         initialLayout={{width: screenWidth}}
-    //         renderTabBar={this.renderTabBar}
-    //       />
-    //       {this.renderBanner(tabIndex)}
-    //     </View>
-    //   );
-    // } else {
-    // if (item === 'LOADER') {
-    //   return (
-    //     <InspectionLoader eqcListRefreshView={styles.eqcListRefreshView} />
-    //   );
-    // } else if (item === 'NO_DATA') {
-    //   return this.renderNoDataFound();
-    // } else {
     return <ProductList navigation={navigation} product={item} />;
-    // }
-    // }
+  };
+
+  const loadMore = () => {
+    dispatch(getAllProducts({limit, skip}));
   };
 
   const onRefresh = () => {
-    setLoader(true);
-    dispatch(getAllProducts());
+    const skipItem = 0;
+    if (!refresh) {
+      setLoader(true);
+      dispatch(onPageRefresh());
+      setTimeout(() => {
+        dispatch(getAllProducts({limit, skipItem}));
+      }, 1000);
+    }
   };
-  console.log('productData', productData);
   return (
     <View style={styles.rootContainer}>
       <HeaderComponent
@@ -163,21 +145,16 @@ const Home = props => {
             }
             data={searchText.length === 0 ? productData : filterProductList}
             numColumns={2}
-            // onEndReached={this.loadMore}
+            onEndReached={() => loadMore()}
             onEndReachedThreshold={0.1}
-            showsVerticalScrollIndicator={true}
+            showsVerticalScrollIndicator={false}
             refreshing={false}
             refreshControl={
               <RefreshControl
-                refreshing={false}
+                refreshing={refresh}
                 onRefresh={() => onRefresh()}
               />
             }
-            // stickyHeaderIndices={[1]}
-            // scrollEnabled={get(this.toBeApprovedList, '[0]') !== 'LOADER'}
-            // extendedState={{
-            //   searchText: this.searchText,
-            // }}
           />
         </View>
       )}
@@ -196,9 +173,4 @@ const Home = props => {
   );
 };
 
-// const Home = () => {
-//   return (
-//       <h1>Page One</h1>
-//   );
-// }
 export default Home;

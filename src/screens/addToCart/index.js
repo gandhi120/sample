@@ -52,7 +52,7 @@ const AddToCart = props => {
           numColumns={1}
           // onEndReached={this.loadMore}
           onEndReachedThreshold={0.1}
-          showsVerticalScrollIndicator={true}
+          showsVerticalScrollIndicator={false}
           refreshing={false}
           // stickyHeaderIndices={[1]}
           // scrollEnabled={get(this.toBeApprovedList, '[0]') !== 'LOADER'}

@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
     borderColor: Colors.white,
     borderRadius: DeviceUiInfo.verticalScale(8),
     marginBottom: DeviceUiInfo.verticalScale(15),
-    backgroundColor: Colors.white,
+    backgroundColor: Colors.lightWhite,
   },
   bottomCartContainer: {
     alignItems: 'center',

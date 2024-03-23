@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
   },
   outerRoot: {
     flex: 1,
-    backgroundColor: Colors.lightGray,
+    backgroundColor: Colors.black,
     paddingHorizontal: DeviceUiInfo.verticalScale(10),
     paddingTop: DeviceUiInfo.verticalScale(10),
   },
@@ -63,7 +63,7 @@ const styles = StyleSheet.create({
     marginBottom: DeviceUiInfo.verticalScale(30),
     paddingVertical: DeviceUiInfo.verticalScale(15),
     paddingHorizontal: DeviceUiInfo.verticalScale(15),
-    backgroundColor: Colors.white,
+    backgroundColor: Colors.lightWhite,
   },
   priceDetailText: {
     color: Colors.black,

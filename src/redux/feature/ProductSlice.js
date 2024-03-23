@@ -1,19 +1,21 @@
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
 import {getAllProduct} from '@api/productApi';
 const initialState = {
-  productData: null,
+  productData: [],
   isLoading: false,
   isSuccess: false,
   isError: false,
-  limit: null,
+  limit: 10,
+  skip: 0,
+  refresh: false,
 };
 
 export const getAllProducts = createAsyncThunk(
   'getAllProduct',
-  async thunkApi => {
-    console.log('getAllProducts');
+  async (data, thunkApi) => {
+    const {limit, skip} = data;
     try {
-      const response = await getAllProduct();
+      const response = await getAllProduct(limit, skip);
       return response;
     } catch (error) {
       return thunkApi.rejectWithValue(error);
@@ -24,17 +26,25 @@ export const getAllProducts = createAsyncThunk(
 const ProductSlice = createSlice({
   name: 'ProductSlice',
   initialState,
-  reducers: {},
+  reducers: {
+    onPageRefresh: state => {
+      state.skip = 0;
+      state.isLoading = true;
+      state.refresh = true;
+      state.productData = [];
+    },
+  },
   extraReducers: builder => {
     builder.addCase(getAllProducts.pending, state => {
-      state.isLoading = true;
+      state.isLoading = !state.skip > 0;
     });
 
     builder.addCase(getAllProducts.fulfilled, (state, action) => {
       state.isLoading = false;
       state.isSuccess = true;
-      state.productData = action.payload.products;
-      state.limit = action.payload.limit;
+      state.productData = [...state.productData, ...action.payload.products];
+      state.skip = state.productData.length;
+      state.refresh = false;
     });
 
     builder.addCase(getAllProducts.rejected, state => {
@@ -44,5 +54,6 @@ const ProductSlice = createSlice({
     });
   },
 });
+export const {onPageRefresh} = ProductSlice.actions;
 
 export default ProductSlice.reducer;

@@ -1,12 +1,11 @@
 import apiInstance from '@api';
-export const getAllProduct = async () => {
+export const getAllProduct = async (limit = 10, skip = 0) => {
   try {
-    console.log('getAllProduct231');
-    const response = await apiInstance.get('products');
-    console.log('response', response);
+    const response = await apiInstance.get(
+      `products?limit=${limit}&skip=${skip}`,
+    );
     return Promise.resolve(response.data);
   } catch (error) {
-    console.log('error', error);
     return Promise.reject(error);
   }
 };
