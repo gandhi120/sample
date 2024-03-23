@@ -5,4 +5,5 @@ export const routing = {
   LIKE_TAB: 'LikeTab',
   HOME_TAB: 'HomeTab',
   SINGLE_PRODUCT: 'SingleProduct',
+  ADD_TO_CART: 'AddToCart',
 };

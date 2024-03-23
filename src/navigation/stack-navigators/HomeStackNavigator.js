@@ -2,6 +2,7 @@ import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import Home from '@home';
 import SingleProduct from '@singleProduct';
+import AddToCart from '@addToCart';
 import Profile from '@profile';
 import Address from '@address';
 import {routing} from '@utils/routeConstant';
@@ -22,6 +23,11 @@ const HomeStackNavigator = props => {
       <Stack.Screen
         name={routing.SINGLE_PRODUCT}
         component={SingleProduct}
+        navigation={props.navigation}
+      />
+      <Stack.Screen
+        name={routing.ADD_TO_CART}
+        component={AddToCart}
         navigation={props.navigation}
       />
       <Stack.Screen

@@ -7,6 +7,8 @@ import {FlashList} from '@shopify/flash-list';
 import {replaceIndianFormate, SIZE_CONTAINER} from '@utils/Constants';
 import {get, map} from 'lodash';
 import {Colors, Metrics} from '@theme';
+import {routing} from '@utils/routeConstant';
+
 const {screenWidth} = Metrics;
 const clothData = [
   {
@@ -49,7 +51,6 @@ const SingleProduct = props => {
   };
 
   const rowRenderer = ({item, index, target, extraData}) => {
-    console.log('item', item);
     const {navigation} = props;
     if (index === 0) {
       return (
@@ -136,15 +137,18 @@ const SingleProduct = props => {
   };
 
   const renderRightComponent = () => {
+    const {navigation} = props;
     return (
       <ActionButton
         buttonStyle={styles.cartIconContainer}
         icon={'cart'}
         iconType="sample"
         iconStyle={styles.cartIcon}
+        onPress={() => navigation.navigate(routing.ADD_TO_CART, {navigation})}
       />
     );
   };
+
   const onBack = () => {
     const {goBack} = props.navigation;
     goBack(null);

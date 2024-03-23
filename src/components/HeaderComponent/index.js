@@ -15,6 +15,7 @@ class HeaderComponent extends Component {
       RightComponent,
       backEnable = false,
       onBackPress,
+      headerTitleStyle,
     } = this.props;
     return (
       <View style={styles.rootContainer}>
@@ -30,7 +31,9 @@ class HeaderComponent extends Component {
           ) : null}
 
           {checkPreDefinedValue(headerTitle) ? (
-            <Text style={styles.headerTitleText}>{headerTitle}</Text>
+            <Text style={headerTitleStyle || styles.headerTitleText}>
+              {headerTitle}
+            </Text>
           ) : null}
           {checkPreDefinedValue(subTitle) ? (
             <Text style={styles.headerSubTitleText}>{subTitle}</Text>

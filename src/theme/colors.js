@@ -21,7 +21,7 @@ const colors = {
   strokeColor: '#CDD5E0',
   primaryHeader: '#202A3F',
   gray: '#e6e9ed',
-  green: '#096b17',
+  green: '#30fc03',
   pageBackground: '#F2F4F7',
   textGrayColor: '#676C77',
 };

@@ -39,7 +39,15 @@ const BottomTabs = props => {
       style={[
         styles.tabBarContainer,
         {
-          display: includes(['SingleProduct', 'Profile', 'Address'], screen)
+          display: includes(
+            [
+              routing.SINGLE_PRODUCT,
+              routing.PROFILE,
+              routing.ADDRESS,
+              routing.ADD_TO_CART,
+            ],
+            screen,
+          )
             ? 'none'
             : 'flex',
         },
