@@ -41,6 +41,14 @@ export const settings = [
     ],
   },
 ];
+
+export const SIZE_CONTAINER = [
+  {id: 1, size: 'S'},
+  {id: 2, size: 'M'},
+  {id: 3, size: 'L'},
+  {id: 4, size: 'XL'},
+  {id: 5, size: 'XXL'},
+];
 export const calculatePerMonth = val => {
   const perMonth = Math.floor(val / 12);
   return replaceIndianFormate(perMonth);

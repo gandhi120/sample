@@ -1,11 +1,11 @@
 import React, {useEffect, useState} from 'react';
-import {FlatList, Image, Text, View} from 'react-native';
+import {FlatList, Image, Text, TouchableOpacity, View} from 'react-native';
 import HeaderComponent from '@components/HeaderComponent';
 import styles from './styles';
 import ActionButton from '@actionButton';
 import {FlashList} from '@shopify/flash-list';
-import {replaceIndianFormate} from '@utils/Constants';
-import {map} from 'lodash';
+import {replaceIndianFormate, SIZE_CONTAINER} from '@utils/Constants';
+import {get, map} from 'lodash';
 import {Colors, Metrics} from '@theme';
 const {screenWidth} = Metrics;
 const clothData = [
@@ -39,10 +39,17 @@ const renderSlider = ({item}) => {
 };
 
 const SingleProduct = props => {
-  useEffect(() => {}, []);
+  useEffect(() => {}, [sizeContainer]);
   const [selectedIndex, setSelectedIndex] = useState(0);
+  const [sizeContainer] = useState(SIZE_CONTAINER);
+  const [selectedSizeIndex, setSelectedSizeIndex] = useState('');
+
+  const onSize = index => {
+    setSelectedSizeIndex(index);
+  };
 
   const rowRenderer = ({item, index, target, extraData}) => {
+    console.log('item', item);
     const {navigation} = props;
     if (index === 0) {
       return (
@@ -59,6 +66,15 @@ const SingleProduct = props => {
               setSelectedIndex(index >= 0 ? index : 0);
             }}
           />
+          {/* <View style={styles.likeIconContainer}> */}
+          <ActionButton
+            buttonStyle={styles.likeButton}
+            icon="like"
+            iconType="sample"
+            iconStyle={styles.likeIcon}
+            // onPress={() => onLike(product)}
+          />
+          {/* </View> */}
           <View style={styles.scrollBarContainer}>
             {map(clothData, (_item, index) => {
               return (
@@ -74,6 +90,44 @@ const SingleProduct = props => {
               );
             })}
           </View>
+        </View>
+      );
+    } else if (index === 1) {
+      return (
+        <View style={styles.infoContainer}>
+          <Text style={styles.titleText}>{'Allen cooper'}</Text>
+          <Text style={styles.descriptionText}>
+            {'Allen cooper Dark Green Regular Fit Shirt'}
+          </Text>
+          <View style={styles.sizeContainer}>
+            <View style={styles.sizeGuideContainer}>
+              <Text style={styles.sizeText}>{'Size:'}</Text>
+              {/* <Text style={styles.sizeText}>{'Size Guide'}</Text> */}
+            </View>
+            <View style={styles.selectSizeContainer}>
+              {map(sizeContainer, (item, index) => {
+                return (
+                  <TouchableOpacity
+                    onPress={() => onSize(index)}
+                    style={
+                      selectedSizeIndex === index
+                        ? styles.activePerfectSizeContainer
+                        : styles.perfectSizeContainer
+                    }>
+                    <Text
+                      style={
+                        selectedSizeIndex === index
+                          ? styles.activePerfectSizeText
+                          : styles.perfectSizeText
+                      }>
+                      {get(item, 'size')}
+                    </Text>
+                  </TouchableOpacity>
+                );
+              })}
+            </View>
+          </View>
+          <Text style={styles.quantityText}>{`Quantity : ${10}`}</Text>
         </View>
       );
     } else {
@@ -103,24 +157,25 @@ const SingleProduct = props => {
         onBackPress={onBack}
         RightComponent={() => renderRightComponent()}
       />
-      <FlashList
-        estimatedItemSize={200}
-        renderItem={({item, index, target, extraData}) =>
-          rowRenderer({item, index, target, extraData})
-        }
-        data={[1, 2, 3, 4, 4]}
-        numColumns={1}
-        // onEndReached={this.loadMore}
-        onEndReachedThreshold={0.1}
-        showsVerticalScrollIndicator={true}
-        refreshing={false}
-        // stickyHeaderIndices={[1]}
-        // scrollEnabled={get(this.toBeApprovedList, '[0]') !== 'LOADER'}
-        // extendedState={{
-        //   searchText: this.searchText,
-        // }}
-      />
-
+      <View style={{flex: 1, backgroundColor: 'black'}}>
+        <FlashList
+          estimatedItemSize={200}
+          renderItem={({item, index, target, extraData}) =>
+            rowRenderer({item, index, target, extraData})
+          }
+          data={[1, 2, 3, 4, 4]}
+          numColumns={1}
+          // onEndReached={this.loadMore}
+          onEndReachedThreshold={0.1}
+          showsVerticalScrollIndicator={true}
+          refreshing={false}
+          // stickyHeaderIndices={[1]}
+          // scrollEnabled={get(this.toBeApprovedList, '[0]') !== 'LOADER'}
+          // extendedState={{
+          //   searchText: this.searchText,
+          // }}
+        />
+      </View>
       <View style={styles.bottomContainer}>
         <Text style={styles.priceText}>{`₹${replaceIndianFormate(
           13999,
