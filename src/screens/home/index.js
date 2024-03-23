@@ -144,6 +144,7 @@ const Home = props => {
     setLoader(true);
     dispatch(getAllProducts());
   };
+  console.log('productData', productData);
   return (
     <View style={styles.rootContainer}>
       <HeaderComponent

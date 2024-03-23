@@ -45,6 +45,7 @@ const BottomTabs = props => {
               routing.PROFILE,
               routing.ADDRESS,
               routing.ADD_TO_CART,
+              routing.WISHLIST,
             ],
             screen,
           )

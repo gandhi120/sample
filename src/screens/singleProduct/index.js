@@ -41,6 +41,8 @@ const renderSlider = ({item}) => {
 };
 
 const SingleProduct = props => {
+  const {navigation} = props;
+
   useEffect(() => {}, [sizeContainer]);
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [sizeContainer] = useState(SIZE_CONTAINER);
@@ -51,7 +53,6 @@ const SingleProduct = props => {
   };
 
   const rowRenderer = ({item, index, target, extraData}) => {
-    const {navigation} = props;
     if (index === 0) {
       return (
         <View style={styles.sliderContainer}>
@@ -73,7 +74,7 @@ const SingleProduct = props => {
             icon="like"
             iconType="sample"
             iconStyle={styles.likeIcon}
-            // onPress={() => onLike(product)}
+            onPress={() => navigation.navigate(routing.WISHLIST, {navigation})}
           />
           {/* </View> */}
           <View style={styles.scrollBarContainer}>
@@ -137,7 +138,6 @@ const SingleProduct = props => {
   };
 
   const renderRightComponent = () => {
-    const {navigation} = props;
     return (
       <ActionButton
         buttonStyle={styles.cartIconContainer}
@@ -150,8 +150,7 @@ const SingleProduct = props => {
   };
 
   const onBack = () => {
-    const {goBack} = props.navigation;
-    goBack(null);
+    navigation.goBack();
   };
 
   return (
@@ -161,7 +160,7 @@ const SingleProduct = props => {
         onBackPress={onBack}
         RightComponent={() => renderRightComponent()}
       />
-      <View style={{flex: 1, backgroundColor: 'black'}}>
+      <View style={styles.outerContainer}>
         <FlashList
           estimatedItemSize={200}
           renderItem={({item, index, target, extraData}) =>
@@ -188,6 +187,7 @@ const SingleProduct = props => {
           buttonStyle={styles.addToCartButton}
           text={'ADD TO CART'}
           textStyle={styles.addToCartText}
+          onPress={() => navigation.navigate(routing.ADD_TO_CART, {navigation})}
         />
       </View>
     </View>

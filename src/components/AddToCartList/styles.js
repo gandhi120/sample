@@ -11,7 +11,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   likeIcon: {
-    color: Colors.white,
+    color: Colors.black,
     fontSize: DeviceUiInfo.verticalScale(15),
     marginRight: DeviceUiInfo.verticalScale(5),
   },
@@ -20,24 +20,25 @@ const styles = StyleSheet.create({
     borderColor: Colors.white,
     borderRadius: DeviceUiInfo.verticalScale(8),
     marginBottom: DeviceUiInfo.verticalScale(15),
+    backgroundColor: Colors.white,
   },
   bottomCartContainer: {
     alignItems: 'center',
     justifyContent: 'flex-end',
     flexDirection: 'row',
     borderTopWidth: 1,
-    borderColor: Colors.gray,
+    borderColor: Colors.black,
     paddingHorizontal: DeviceUiInfo.verticalScale(5),
     paddingVertical: DeviceUiInfo.verticalScale(8),
   },
   wishlistText: {
-    color: Colors.white,
+    color: Colors.black,
     fontSize: DeviceUiInfo.verticalScale(12),
     fontFamily: type.rubikMedium,
     marginLeft: DeviceUiInfo.verticalScale(2),
   },
   removeText: {
-    color: Colors.white,
+    color: Colors.black,
     fontSize: DeviceUiInfo.verticalScale(12),
     fontFamily: type.rubikRegular,
     marginLeft: DeviceUiInfo.verticalScale(12),
@@ -57,13 +58,13 @@ const styles = StyleSheet.create({
     paddingLeft: DeviceUiInfo.moderateScale(9),
   },
   productTitle: {
-    color: Colors.white,
+    color: Colors.black,
     fontSize: DeviceUiInfo.verticalScale(11),
     fontFamily: type.rubikRegular,
     marginBottom: DeviceUiInfo.verticalScale(2),
   },
   productPriceText: {
-    color: Colors.white,
+    color: Colors.black,
     fontSize: DeviceUiInfo.verticalScale(10),
     fontFamily: type.rubikMedium,
     marginBottom: DeviceUiInfo.verticalScale(2),
@@ -74,7 +75,7 @@ const styles = StyleSheet.create({
   },
   selectSizeContainer: {
     borderWidth: 1,
-    borderColor: Colors.white,
+    borderColor: Colors.black,
     borderRadius: DeviceUiInfo.verticalScale(4),
     width: DeviceUiInfo.verticalScale(50),
     paddingVertical: DeviceUiInfo.verticalScale(2),
@@ -88,17 +89,17 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   sizeNumberText: {
-    color: Colors.white,
+    color: Colors.black,
     fontSize: DeviceUiInfo.verticalScale(10),
     fontFamily: type.rubikMedium,
   },
   downArrowIcon: {
-    color: Colors.white,
+    color: Colors.black,
     fontSize: DeviceUiInfo.verticalScale(12),
   },
   emptyContainer: {
     borderWidth: 0.5,
-    borderColor: Colors.white,
+    borderColor: Colors.black,
     marginHorizontal: DeviceUiInfo.verticalScale(12),
   },
   deliveryContainer: {
@@ -108,12 +109,12 @@ const styles = StyleSheet.create({
     paddingVertical: DeviceUiInfo.verticalScale(8),
   },
   deliveryText: {
-    color: Colors.white,
+    color: Colors.black,
     fontSize: DeviceUiInfo.verticalScale(10),
     fontFamily: type.rubikRegular,
   },
   deliveryDateText: {
-    color: Colors.white,
+    color: Colors.black,
     fontSize: DeviceUiInfo.verticalScale(10),
     fontFamily: type.rubikMedium,
   },

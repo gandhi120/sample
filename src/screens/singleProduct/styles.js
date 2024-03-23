@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
   },
   infoContainer: {
     marginTop: DeviceUiInfo.verticalScale(20),
-    backgroundColor: Colors.black,
+    // backgroundColor: Colors.black,
     paddingHorizontal: DeviceUiInfo.verticalScale(5),
     marginBottom: DeviceUiInfo.verticalScale(15),
   },
@@ -98,19 +98,19 @@ const styles = StyleSheet.create({
     zIndex: 9,
   },
   titleText: {
-    color: Colors.white,
+    color: Colors.black,
     fontSize: DeviceUiInfo.verticalScale(15),
     fontFamily: type.rubikMedium,
     marginBottom: DeviceUiInfo.verticalScale(5),
   },
   descriptionText: {
-    color: Colors.white,
+    color: Colors.black,
     fontSize: DeviceUiInfo.verticalScale(12),
     fontFamily: type.rubikRegular,
   },
   sizeContainer: {
     marginTop: DeviceUiInfo.verticalScale(20),
-    borderColor: Colors.white,
+    borderColor: Colors.black,
     borderBottomWidth: 2,
     borderTopWidth: 2,
     paddingHorizontal: DeviceUiInfo.verticalScale(12),
@@ -124,7 +124,7 @@ const styles = StyleSheet.create({
     paddingBottom: DeviceUiInfo.verticalScale(10),
   },
   sizeText: {
-    color: Colors.white,
+    color: Colors.black,
     fontSize: DeviceUiInfo.verticalScale(12),
     fontFamily: type.rubikMedium,
   },
@@ -138,7 +138,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     height: DeviceUiInfo.verticalScale(40),
     width: DeviceUiInfo.verticalScale(40),
-    borderColor: Colors.white,
+    borderColor: Colors.black,
     borderRadius: DeviceUiInfo.verticalScale(50),
     marginRight: DeviceUiInfo.verticalScale(10),
   },
@@ -151,22 +151,26 @@ const styles = StyleSheet.create({
     borderColor: Colors.white,
     borderRadius: DeviceUiInfo.verticalScale(50),
     marginRight: DeviceUiInfo.verticalScale(10),
-    backgroundColor: Colors.white,
+    backgroundColor: Colors.black,
   },
   perfectSizeText: {
-    color: Colors.white,
-    fontSize: DeviceUiInfo.verticalScale(15),
-    fontFamily: type.rubikMedium,
-  },
-  activePerfectSizeText: {
     color: Colors.black,
     fontSize: DeviceUiInfo.verticalScale(15),
     fontFamily: type.rubikMedium,
   },
-  quantityText: {
+  activePerfectSizeText: {
     color: Colors.white,
+    fontSize: DeviceUiInfo.verticalScale(15),
+    fontFamily: type.rubikMedium,
+  },
+  quantityText: {
+    color: Colors.black,
     fontSize: DeviceUiInfo.verticalScale(12),
     fontFamily: type.rubikRegular,
+  },
+  outerContainer: {
+    flex: 1,
+    backgroundColor: Colors.lightGray,
   },
 });
 export default styles;

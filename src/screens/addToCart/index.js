@@ -5,8 +5,11 @@ import styles from './styles';
 import ActionButton from '@actionButton';
 import {replaceIndianFormate} from '@utils/Constants';
 import AddToCartList from '@addToCartList';
+import {routing} from '@utils/routeConstant';
+import {FlashList} from '@shopify/flash-list';
 
 const AddToCart = props => {
+  const {navigation} = props;
   useEffect(() => {}, []);
 
   const renderRightComponent = () => {
@@ -16,12 +19,17 @@ const AddToCart = props => {
         icon={'like'}
         iconType="sample"
         iconStyle={styles.likeIcon}
+        onPress={() => navigation.navigate(routing.WISHLIST, {navigation})}
       />
     );
   };
   const onBack = () => {
     const {goBack} = props.navigation;
     goBack(null);
+  };
+  const rowRenderer = ({item, index, target, extraData}) => {
+    const {navigation} = props;
+    return <AddToCartList navigation={navigation} />;
   };
 
   return (
@@ -34,7 +42,24 @@ const AddToCart = props => {
         headerTitleStyle={styles.headerTitleText}
       />
       <ScrollView style={styles.outerRoot}>
-        <AddToCartList />
+        {/* <AddToCartList navigation={navigation} /> */}
+        <FlashList
+          estimatedItemSize={241}
+          renderItem={({item, index, target, extraData}) =>
+            rowRenderer({item, index, target, extraData})
+          }
+          data={[1, 2, 1]}
+          numColumns={1}
+          // onEndReached={this.loadMore}
+          onEndReachedThreshold={0.1}
+          showsVerticalScrollIndicator={true}
+          refreshing={false}
+          // stickyHeaderIndices={[1]}
+          // scrollEnabled={get(this.toBeApprovedList, '[0]') !== 'LOADER'}
+          // extendedState={{
+          //   searchText: this.searchText,
+          // }}
+        />
         <View style={styles.priceDetailContainer}>
           <Text style={styles.priceDetailText}>{'Price Details'}</Text>
           <View style={styles.priceRowContainer}>

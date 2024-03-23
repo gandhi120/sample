@@ -6,4 +6,5 @@ export const routing = {
   HOME_TAB: 'HomeTab',
   SINGLE_PRODUCT: 'SingleProduct',
   ADD_TO_CART: 'AddToCart',
+  WISHLIST: 'WhishList',
 };

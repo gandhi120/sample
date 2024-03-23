@@ -15,9 +15,21 @@ const styles = StyleSheet.create({
   },
   productImage: {
     height: DeviceUiInfo.moderateScale(210),
-    width: (screenWidth - 20) / 2,
+    width: '100%',
+    // flex: 1,
     resizeMode: 'center',
     borderRadius: DeviceUiInfo.moderateScale(20),
+  },
+  wishListImageContainer: {
+    width: '100%',
+    height: DeviceUiInfo.moderateScale(220),
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: Colors.white,
+    // borderRadius: DeviceUiInfo.moderateScale(20),
+    borderTopLeftRadius: DeviceUiInfo.moderateScale(20),
+    borderTopRightRadius: DeviceUiInfo.moderateScale(20),
+    overflow: 'hidden',
   },
   imageContainer: {
     width: '100%',
@@ -26,6 +38,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     backgroundColor: Colors.white,
     borderRadius: DeviceUiInfo.moderateScale(20),
+    // borderTopLeftRadius: DeviceUiInfo.moderateScale(20),
+    // borderTopRightRadius: DeviceUiInfo.moderateScale(20),
     overflow: 'hidden',
   },
   infoContainer: {
@@ -108,6 +122,16 @@ const styles = StyleSheet.create({
     fontSize: DeviceUiInfo.moderateScale(12),
     color: Colors.black,
     marginTop: DeviceUiInfo.moderateScale(7),
+  },
+  addToBagContainer: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: Colors.white,
+    paddingVertical: DeviceUiInfo.moderateScale(7),
+    flex: 1,
+    height: DeviceUiInfo.moderateScale(30),
+    borderBottomLeftRadius: DeviceUiInfo.moderateScale(20),
+    borderBottomRightRadius: DeviceUiInfo.moderateScale(20),
   },
 });
 
