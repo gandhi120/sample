@@ -24,6 +24,7 @@ const colors = {
   green: '#30fc03',
   pageBackground: '#F2F4F7',
   textGrayColor: '#676C77',
+  lightGray: '#e6edf7',
 };
 
 export default colors;

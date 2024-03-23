@@ -11,7 +11,6 @@ const ProductList = inject('userStore')(
     const onLike = product => {};
     const onProduct = () => {
       const {product} = props;
-      console.log('productId', product);
       const {navigation} = props;
       navigation.navigate(routing.SINGLE_PRODUCT, {navigation});
     };
@@ -26,11 +25,11 @@ const ProductList = inject('userStore')(
             iconStyle={styles.likeIcon}
             onPress={() => onLike(product)}
           />
-          <View style={styles.rateCountContainer}>
+          {/* <View style={styles.rateCountContainer}>
             <Text style={styles.rateText}>{`${get(product, 'rating')}`}</Text>
             <Text style={styles.star}>{'*'}</Text>
             <Text style={styles.rateText}>{get(product, 'stock')}</Text>
-          </View>
+          </View> */}
 
           <Image
             source={{

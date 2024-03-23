@@ -14,17 +14,19 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   productImage: {
-    height: DeviceUiInfo.moderateScale(250),
-    // marginBottom: DeviceUiInfo.moderateScale(45),
+    height: DeviceUiInfo.moderateScale(210),
     width: (screenWidth - 20) / 2,
-    // backgroundColor: 'yellow',
+    resizeMode: 'center',
+    borderRadius: DeviceUiInfo.moderateScale(20),
   },
   imageContainer: {
-    backgroundColor: Colors.white,
     width: '100%',
-    height: '80%',
+    height: DeviceUiInfo.moderateScale(220),
     alignItems: 'center',
     justifyContent: 'center',
+    backgroundColor: Colors.white,
+    borderRadius: DeviceUiInfo.moderateScale(20),
+    overflow: 'hidden',
   },
   infoContainer: {
     backgroundColor: 'black',
@@ -83,9 +85,9 @@ const styles = StyleSheet.create({
     marginRight: DeviceUiInfo.moderateScale(12),
   },
   mainContainer: {
-    backgroundColor: 'white',
-    marginBottom: DeviceUiInfo.moderateScale(45),
-    width: (screenWidth - 20) / 2,
+    backgroundColor: Colors.lightGray,
+    marginBottom: DeviceUiInfo.moderateScale(15),
+    width: (screenWidth - 39) / 2,
     borderRadius: DeviceUiInfo.moderateScale(4),
   },
   titleText: {
