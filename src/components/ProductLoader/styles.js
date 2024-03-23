@@ -7,16 +7,52 @@ const {screenWidth} = Metrics;
 export default StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: Colors.lightGray,
   },
-  recyclerBackground: {
-    backgroundColor: Colors.pageBackground,
+  singleWholeCartContainer: {
     flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: DeviceUiInfo.moderateScale(20),
+  },
+  subContainer: {},
+  recyclerBackground: {
+    backgroundColor: Colors.secondary,
+    flexDirection: 'row',
+    width: (screenWidth - 39) / 2,
+    height: DeviceUiInfo.moderateScale(220),
+    borderRadius: DeviceUiInfo.moderateScale(20),
+    marginLeft: DeviceUiInfo.moderateScale(12),
   },
   eqcListView: {
-    backgroundColor: Colors.pageBackground,
-    width: (screenWidth - 20) / 2,
-    height: DeviceUiInfo.moderateScale(300),
+    backgroundColor: Colors.secondary,
+    width: (screenWidth - 39) / 2,
+    height: DeviceUiInfo.moderateScale(220),
     marginBottom: DeviceUiInfo.moderateScale(45),
-    marginLeft: DeviceUiInfo.moderateScale(6.66),
+    marginRight: DeviceUiInfo.moderateScale(12),
+    borderRadius: DeviceUiInfo.moderateScale(20),
+  },
+  title: {
+    width: DeviceUiInfo.moderateScale(100),
+    height: DeviceUiInfo.moderateScale(10),
+    marginLeft: DeviceUiInfo.moderateScale(12),
+    backgroundColor: Colors.secondary,
+    borderRadius: DeviceUiInfo.moderateScale(12),
+    marginTop: DeviceUiInfo.moderateScale(10),
+  },
+  description: {
+    width: DeviceUiInfo.moderateScale(150),
+    height: DeviceUiInfo.moderateScale(10),
+    marginLeft: DeviceUiInfo.moderateScale(12),
+    backgroundColor: Colors.secondary,
+    borderRadius: DeviceUiInfo.moderateScale(12),
+    marginTop: DeviceUiInfo.moderateScale(10),
+  },
+  price: {
+    width: DeviceUiInfo.moderateScale(50),
+    height: DeviceUiInfo.moderateScale(10),
+    marginLeft: DeviceUiInfo.moderateScale(12),
+    backgroundColor: Colors.secondary,
+    borderRadius: DeviceUiInfo.moderateScale(12),
+    marginTop: DeviceUiInfo.moderateScale(10),
   },
 });
