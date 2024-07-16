@@ -48,8 +48,17 @@ const SingleProduct = props => {
   const [sizeContainer] = useState(SIZE_CONTAINER);
   const [selectedSizeIndex, setSelectedSizeIndex] = useState('');
 
-  const onSize = index => {
-    setSelectedSizeIndex(index);
+  const onSize = () => {
+    let count = 0;
+
+    function l(index) {
+      if (count > 0) {
+      } else {
+        count++;
+        setSelectedSizeIndex(index);
+      }
+    }
+    return l;
   };
 
   const rowRenderer = ({item, index, target, extraData}) => {
@@ -95,6 +104,7 @@ const SingleProduct = props => {
         </View>
       );
     } else if (index === 1) {
+      const lala = onSize();
       return (
         <View style={styles.infoContainer}>
           <Text style={styles.titleText}>{'Allen cooper'}</Text>
@@ -110,7 +120,7 @@ const SingleProduct = props => {
               {map(sizeContainer, (item, index) => {
                 return (
                   <TouchableOpacity
-                    onPress={() => onSize(index)}
+                    onPress={() => lala(index)}
                     style={
                       selectedSizeIndex === index
                         ? styles.activePerfectSizeContainer

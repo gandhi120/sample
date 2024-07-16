@@ -26,6 +26,7 @@ const colors = {
   textGrayColor: '#676C77',
   lightGray: '#e6edf7',
   lightWhite: '#F5F3F4',
+  blackTransparent: 'rgba(0, 0, 0, 0.1)',
 };
 
 export default colors;

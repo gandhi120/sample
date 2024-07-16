@@ -118,12 +118,13 @@ const Home = props => {
   };
 
   const onRefresh = () => {
-    const skipItem = 0;
+    const skip = 0;
     if (!refresh) {
       setLoader(true);
       dispatch(onPageRefresh());
       setTimeout(() => {
-        dispatch(getAllProducts({limit, skipItem}));
+        console.log('detTimeOut');
+        dispatch(getAllProducts({limit, skip}));
       }, 1000);
     }
   };

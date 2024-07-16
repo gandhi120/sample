@@ -7,6 +7,7 @@ import {replaceIndianFormate} from '@utils/Constants';
 import AddToCartList from '@addToCartList';
 import {routing} from '@utils/routeConstant';
 import {FlashList} from '@shopify/flash-list';
+import SizeModal from '@sizeModal';
 
 const AddToCart = props => {
   const {navigation} = props;
@@ -101,6 +102,7 @@ const AddToCart = props => {
           textStyle={styles.addToCartText}
         />
       </View>
+      <SizeModal visible={true} />
     </View>
   );
 };
