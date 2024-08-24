@@ -12,10 +12,8 @@ const data = [
   {id: '3', type: 'vertical'},
   {id: '4', type: 'vertical'},
   {id: '5', type: 'vertical'},
-  // Add more items if needed
+  {id: '6', type: 'vertical'},
 ];
-const p =
-  'One of our team mate finds difficulty while booking train ticket on \n IRCTC app. He encountered numerous problems such as logged in \n the app, automatically logout, interface looks cluttered, and require \n a captcha each time he logged in. Additionally, there were unclear \n instructions for booking train tickets, and he was having trouble with \n the class and quota sections.';
 interface HomeScreenProps {
   navigation: StackNavigationProp<RootStackParamList, 'Home'>;
 }
@@ -31,7 +29,11 @@ const Home = ({navigation}: HomeScreenProps) => {
         <View style={styles.noScrollItem}>
           <View>
             <Image source={Images.background} style={styles.background} />
-            <Text style={styles.bannerText}>{p}</Text>
+            <Text style={styles.bannerText}>
+              {
+                'One of our team mate finds difficulty while booking train ticket on \n IRCTC app. He encountered numerous problems such as logged in \n the app, automatically logout, interface looks cluttered, and require \n a captcha each time he logged in. Additionally, there were unclear \n instructions for booking train tickets, and he was having trouble with \n the class and quota sections.'
+              }
+            </Text>
           </View>
           <Image source={Images.banner} style={styles.bannerStyle} />
         </View>
@@ -71,6 +73,7 @@ const Home = ({navigation}: HomeScreenProps) => {
   return (
     <View style={styles.container}>
       <FlashList
+        bounces={false}
         data={data}
         renderItem={renderItem}
         estimatedItemSize={100} // Estimate the item height for performance optimization

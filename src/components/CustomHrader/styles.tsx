@@ -1,15 +1,14 @@
 import {StyleSheet} from 'react-native';
 import DeviceUiInfo from '@utils/DeviceUiInfo';
-import {Colors, Fonts, Metrics} from '@theme';
+import {Colors, Fonts} from '@theme';
 const {size, type} = Fonts;
-const {screenWidth} = Metrics;
 
 // const {size, type} = Fonts;
 
 const styles = StyleSheet.create({
-    headerRoot:{
-        backgroundColor: Colors.lightBlack,  
-    },
+  headerRoot: {
+    backgroundColor: Colors.lightBlack,
+  },
   container: {
     flexDirection: 'row',
     justifyContent: 'space-between',

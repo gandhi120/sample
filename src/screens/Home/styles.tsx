@@ -34,6 +34,7 @@ const styles = StyleSheet.create({
   background: {
     height: DeviceUiInfo.moderateScale(12),
     width: DeviceUiInfo.moderateScale(150),
+    marginBottom: DeviceUiInfo.moderateScale(10),
   },
   bannerText: {
     fontSize: size.f7,

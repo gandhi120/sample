@@ -4,6 +4,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 import Home from './screens/Home/Home';
 import Settings from './Settings';
 import CustomHeader from '@customHeader';
+import {SafeAreaView} from 'react-native';
 
 export type RootStackParamList = {
   Home: undefined;
@@ -14,24 +15,25 @@ const Stack = createStackNavigator<RootStackParamList>();
 
 const AppNavigator = () => {
   return (
-    
-    <NavigationContainer>
-      <Stack.Navigator
-        screenOptions={{
-          headerShown: true,
-          header: props => <CustomHeader {...props} />, // Custom Header
-        }}>
-        <Stack.Screen
-          name="Home"
-          component={Home}
-          options={{
+    <SafeAreaView style={{flex: 1, backgroundColor: 'black'}}>
+      <NavigationContainer>
+        <Stack.Navigator
+          screenOptions={{
             headerShown: true,
-            // header: props => <CustomHeader {...props} />, // Custom Header
-          }}
-        />
-        <Stack.Screen name="Settings" component={Settings} />
-      </Stack.Navigator>
-    </NavigationContainer>
+            header: props => <CustomHeader {...props} />, // Custom Header
+          }}>
+          <Stack.Screen
+            name="Home"
+            component={Home}
+            options={{
+              headerShown: true,
+              // header: props => <CustomHeader {...props} />, // Custom Header
+            }}
+          />
+          <Stack.Screen name="Settings" component={Settings} />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </SafeAreaView>
   );
 };
 export default AppNavigator;
