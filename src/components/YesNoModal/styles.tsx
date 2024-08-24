@@ -1,3 +1,4 @@
+/* eslint-disable no-dupe-keys */
 import {StyleSheet} from 'react-native';
 import DeviceUiInfo from '@utils/DeviceUiInfo';
 import {Colors, Fonts, Metrics} from '@theme';
@@ -11,7 +12,6 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-end',
   },
   subContainer: {
-    backgroundColor: Colors.white,
     borderTopLeftRadius: DeviceUiInfo.moderateScale(16),
     borderTopRightRadius: DeviceUiInfo.moderateScale(16),
     height: DeviceUiInfo.moderateScale(410),
@@ -82,7 +82,6 @@ const styles = StyleSheet.create({
     fontSize: size.f16,
     color: Colors.secondary,
     fontFamily: type.rubikSemiBold,
-    // marginBottom: DeviceUiInfo.moderateScale(10),
   },
   footerContainer: {
     flexDirection: 'row',
@@ -90,7 +89,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     backgroundColor: Colors.dayNight,
     borderRadius: DeviceUiInfo.moderateScale(100),
-    marginTop:DeviceUiInfo.moderateScale(20),
+    marginTop: DeviceUiInfo.moderateScale(20),
   },
   buttonContainer: {
     borderRadius: DeviceUiInfo.moderateScale(100),

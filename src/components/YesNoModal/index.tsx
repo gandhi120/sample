@@ -1,12 +1,11 @@
 import {View} from 'native-base';
-import React, {useState} from 'react';
-import {Image, Text, TouchableOpacity} from 'react-native';
+import React from 'react';
+import {Image, Text} from 'react-native';
 import styles from './styles';
 import Modal from 'react-native-modal';
 import Images from '@theme/images';
-const YesNoModal: React.FC = ({message}) => {
+const YesNoModal: React.FC = () => {
   /* UI Design Code */
-  const [count, setCount] = useState(0);
 
   return (
     <>
