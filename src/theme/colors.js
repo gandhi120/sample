@@ -30,6 +30,8 @@ const colors = {
   question: '#1a1b1c',
   questionText: '#cbcbcb',
   lightGreen: '#00b96c',
+  border: '#2d2f31',
+  dayNight: '#1e2122',
 };
 
 export default colors;
