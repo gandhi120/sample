@@ -5,6 +5,7 @@ import styles from './styles';
 import {FlashList} from '@shopify/flash-list';
 import SportsCategory from './HomeComponent/SportsCategory/SportsCategory'; // Adjust the path as needed
 import Images from '@theme/images';
+import YesNoModal from '@yesNoModal';
 
 const data = [
   {id: '1', type: 'horizontal'},
@@ -76,9 +77,10 @@ const Home = ({navigation}: HomeScreenProps) => {
         bounces={false}
         data={data}
         renderItem={renderItem}
-        estimatedItemSize={100} // Estimate the item height for performance optimization
+        estimatedItemSize={50} // Estimate the item height for performance optimization
         keyExtractor={item => item.id}
       />
+      <YesNoModal />
     </View>
   );
 };

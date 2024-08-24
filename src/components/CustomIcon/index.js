@@ -12,8 +12,6 @@ const Sample = createIconSetFromIcoMoon(
   Platform.OS === 'android' ? 'sample.ttf' : '',
 );
 const CustomIcon = props => {
-  console.log('CustomIcon', sampleIconConfig);
-
   if (props.type === 'FontAwesome') {
     return <FontAwesome5 {...props} />;
   } else if (props.type === 'sample') {
