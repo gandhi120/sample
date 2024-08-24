@@ -60,12 +60,15 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     width: (screenWidth - DeviceUiInfo.moderateScale(47)) / 2,
+    borderWidth: DeviceUiInfo.moderateScale(3),
   },
   yesButton: {
     backgroundColor: Colors.blue,
+    borderColor: Colors.blueBorder,
   },
   noButton: {
     backgroundColor: Colors.lightGreen,
+    borderColor: Colors.greenBorder,
   },
   yesText: {
     fontSize: size.f14,

@@ -32,6 +32,8 @@ const colors = {
   lightGreen: '#00b96c',
   border: '#2d2f31',
   dayNight: '#1e2122',
+  greenBorder: '#00f899',
+  blueBorder: '#005df2',
 };
 
 export default colors;
