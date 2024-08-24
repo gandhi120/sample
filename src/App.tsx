@@ -1,24 +1,13 @@
 import React, {useEffect} from 'react';
-import {SafeAreaView, StyleSheet, Text} from 'react-native';
-
 import SplashScreen from 'react-native-splash-screen';
+import AppNavigator from './AppNavigator';
 
 function App(): JSX.Element {
   useEffect(() => {
     SplashScreen.hide();
   });
 
-  return (
-    <SafeAreaView style={styles.sectionContainer}>
-      <Text>{'hello'}</Text>
-    </SafeAreaView>
-  );
+  return <AppNavigator />;
 }
-
-const styles = StyleSheet.create({
-  sectionContainer: {
-    flex: 1,
-  },
-});
 
 export default App;

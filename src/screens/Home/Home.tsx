@@ -1,0 +1,83 @@
+import {Image, Text, TouchableOpacity, View} from 'react-native';
+import {StackNavigationProp} from '@react-navigation/stack';
+import {RootStackParamList} from '../../AppNavigator';
+import styles from './styles';
+import {FlashList} from '@shopify/flash-list';
+import SportsCategory from './HomeComponent/SportsCategory/SportsCategory'; // Adjust the path as needed
+import Images from '@theme/images';
+
+const data = [
+  {id: '1', type: 'horizontal'},
+  {id: '2', type: 'no-scroll'},
+  {id: '3', type: 'vertical'},
+  {id: '4', type: 'vertical'},
+  {id: '5', type: 'vertical'},
+  // Add more items if needed
+];
+const p =
+  'One of our team mate finds difficulty while booking train ticket on \n IRCTC app. He encountered numerous problems such as logged in \n the app, automatically logout, interface looks cluttered, and require \n a captcha each time he logged in. Additionally, there were unclear \n instructions for booking train tickets, and he was having trouble with \n the class and quota sections.';
+interface HomeScreenProps {
+  navigation: StackNavigationProp<RootStackParamList, 'Home'>;
+}
+
+const Home = ({navigation}: HomeScreenProps) => {
+  const renderItem = ({item, index}: {item: any; index: number}) => {
+    if (index === 0) {
+      // Render sports category..
+      return <SportsCategory />;
+    } else if (index === 1) {
+      // Render banner..
+      return (
+        <View style={styles.noScrollItem}>
+          <View>
+            <Image source={Images.background} style={styles.background} />
+            <Text style={styles.bannerText}>{p}</Text>
+          </View>
+          <Image source={Images.banner} style={styles.bannerStyle} />
+        </View>
+      );
+    } else {
+      // Render questions..
+      return (
+        <View style={styles.root}>
+          {/* This for question and image part */}
+          <View style={styles.questionContainer}>
+            <View style={styles.questionSubContainer}>
+              <Text style={styles.questionText}>
+                {'Kolkata to win the match vs Mumbai?'}
+              </Text>
+              <Text style={styles.questionSubText}>
+                {'H2H last 5 T20 : Kolkata 4,Mumbai 1, DRAW 0'}
+              </Text>
+            </View>
+            <View style={styles.imageContainer}>
+              <Image source={Images.tataIpl} style={styles.iplImage} />
+            </View>
+          </View>
+          {/* This for footer button part */}
+          <View style={styles.footerContainer}>
+            <TouchableOpacity
+              style={[styles.buttonContainer, styles.yesButton]}>
+              <Text style={styles.yesText}>{'Yes ₹ 5.3'}</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={[styles.buttonContainer, styles.noButton]}>
+              <Text style={styles.yesText}>{'No ₹ 4.7'}</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      );
+    }
+  };
+  return (
+    <View style={styles.container}>
+      <FlashList
+        data={data}
+        renderItem={renderItem}
+        estimatedItemSize={100} // Estimate the item height for performance optimization
+        keyExtractor={item => item.id}
+      />
+    </View>
+  );
+};
+
+export default Home;

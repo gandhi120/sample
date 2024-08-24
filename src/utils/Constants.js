@@ -1,3 +1,4 @@
+import Images from '@theme/images';
 export const APPLE_ID = '1522416942';
 export const productName = 'Advaita';
 export const NAME_LENGTH = 250;
@@ -49,6 +50,54 @@ export const SIZE_CONTAINER = [
   {id: 4, size: 'XL'},
   {id: 5, size: 'XXL'},
 ];
+
+export const TITLE_BAR_ITEM = [
+  {
+    id: 1,
+    title: 'Bitcoin',
+    type: 'cryptoTrade',
+    subTitle: '$5438',
+    currentUpDown: '+0.23',
+    imageUri: Images.bitcoin,
+  },
+  {
+    id: 2,
+    title: 'IPL',
+    type: 'sports',
+    subTitle: '2024',
+    imageUri: Images.cricket,
+  },
+  {
+    id: 3,
+    title: 'Ethereum',
+    type: 'cryptoTrade',
+    subTitle: '$5438',
+    currentUpDown: '+0.23',
+    imageUri: Images.ethereum,
+  },
+  {
+    id: 4,
+    title: `Men's world cup`,
+    type: 'sports',
+    subTitle: 'Cricket',
+    imageUri: Images.cricket,
+  },
+  {
+    id: 5,
+    title: 'Champion league',
+    type: 'sports',
+    subTitle: 'Football',
+    imageUri: Images.football,
+  },
+];
+
+export const QUESTION = [
+  {
+    question: 'Kolkata to win the match vs Mumbai?',
+    subTitle: 'H2H last 5 T20 : Kolkata 4,Mumbai 1, DRAW 0',
+  },
+];
+
 export const calculatePerMonth = val => {
   const perMonth = Math.floor(val / 12);
   return replaceIndianFormate(perMonth);

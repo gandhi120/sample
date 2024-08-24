@@ -1,3 +1,15 @@
 {
+  "compilerOptions": {
+    "baseUrl": "./src", // Base directory
+    "target": "ES5",
+    "experimentalDecorators": true,
+    "paths": {
+      "@theme/*": ["theme/*"],
+      "@utils/*": ["utils/*"],
+      "@decorators/*": ["decorators/*"]
+    },
+    // other options...
+  },
+
   "extends": "@tsconfig/react-native/tsconfig.json"
 }
