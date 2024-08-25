@@ -24,7 +24,6 @@ const styles = StyleSheet.create({
   },
   imageContainer: {
     marginLeft: DeviceUiInfo.moderateScale(25),
-    backgroundColor: 'red',
   },
   imageStyle: {
     height: DeviceUiInfo.moderateScale(55),

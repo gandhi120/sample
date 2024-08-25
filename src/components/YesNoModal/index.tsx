@@ -75,6 +75,7 @@ const YesNoModal: React.FC<YesNoModalProps> = props => {
               maximumValue={132045}
               minimumTrackTintColor={Colors.blue}
               maximumTrackTintColor={Colors.secondary}
+              thumbTintColor={Colors.blue}
             />
           </View>
           <View style={styles.incrementContainer}>
