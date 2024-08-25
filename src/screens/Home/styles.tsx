@@ -6,6 +6,9 @@ const {size, type} = Fonts;
 const {screenWidth} = Metrics;
 
 const styles = StyleSheet.create({
+  flashList: {
+    paddingBottom: DeviceUiInfo.moderateScale(100),
+  },
   container: {
     flex: 1,
     backgroundColor: Colors.lightBlack,

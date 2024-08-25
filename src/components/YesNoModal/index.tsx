@@ -25,7 +25,6 @@ interface YesNoModalProps {
   onRequestClose: () => void;
 }
 const YesNoModal: React.FC<YesNoModalProps> = props => {
-  /* UI Design Code */
   const {visible, closeModal, isFromYes} = props;
   const X = useSharedValue(10);
   const animationGestureHandler = useAnimatedGestureHandler({

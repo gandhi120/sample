@@ -13,7 +13,6 @@ const styles = StyleSheet.create({
   subContainer: {
     borderTopLeftRadius: DeviceUiInfo.moderateScale(16),
     borderTopRightRadius: DeviceUiInfo.moderateScale(16),
-    // height: DeviceUiInfo.moderateScale(810),
     overflow: 'hidden',
     backgroundColor: Colors.black,
     paddingTop: DeviceUiInfo.moderateScale(10),
@@ -237,7 +236,8 @@ const styles = StyleSheet.create({
     fontSize: size.f13,
     color: Colors.secondary,
     fontFamily: type.rubikSemiBold,
-    marginVertical: DeviceUiInfo.moderateScale(5),
+    marginVertical: DeviceUiInfo.moderateScale(8),
+    lineHeight: DeviceUiInfo.moderateScale(30),
   },
 });
 

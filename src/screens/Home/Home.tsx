@@ -1,10 +1,4 @@
-import {
-  Image,
-  Text,
-  TouchableOpacity,
-  TouchableWithoutFeedback,
-  View,
-} from 'react-native';
+import {Image, Text, TouchableOpacity, View} from 'react-native';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {RootStackParamList} from '../../AppNavigator';
 import styles from './styles';
@@ -94,8 +88,9 @@ const Home = ({navigation}: HomeScreenProps) => {
         bounces={false}
         data={data}
         renderItem={renderItem}
-        estimatedItemSize={50} // Estimate the item height for performance optimization
+        estimatedItemSize={50}
         keyExtractor={item => item.id}
+        contentContainerStyle={styles.flashList}
       />
 
       <YesNoModal
