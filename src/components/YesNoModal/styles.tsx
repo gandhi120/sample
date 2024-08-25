@@ -239,6 +239,10 @@ const styles = StyleSheet.create({
     marginVertical: DeviceUiInfo.moderateScale(8),
     lineHeight: DeviceUiInfo.moderateScale(30),
   },
+  slider: {
+    width: DeviceUiInfo.moderateScale(200),
+    height: DeviceUiInfo.moderateScale(20),
+  },
 });
 
 export default styles;

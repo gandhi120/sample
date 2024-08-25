@@ -16,6 +16,8 @@ import Animated, {
   useSharedValue,
   withSpring,
 } from 'react-native-reanimated';
+import Slider from '@react-native-community/slider';
+
 const {screenWidth} = Metrics;
 interface YesNoModalProps {
   visible: boolean;
@@ -66,9 +68,15 @@ const YesNoModal: React.FC<YesNoModalProps> = props => {
           <View style={styles.incrementContainer}>
             <Text style={styles.signText}>{'+'}</Text>
           </View>
-
-          <Text>{'Hello'}</Text>
-
+          <View>
+            <Slider
+              style={styles.slider}
+              minimumValue={0}
+              maximumValue={132045}
+              minimumTrackTintColor={Colors.blue}
+              maximumTrackTintColor={Colors.secondary}
+            />
+          </View>
           <View style={styles.incrementContainer}>
             <Text style={styles.signText}>{'-'}</Text>
           </View>
@@ -83,12 +91,12 @@ const YesNoModal: React.FC<YesNoModalProps> = props => {
         </View>
         <View style={styles.putGetContainer}>
           <View style={styles.leftContainer}>
-            <Text style={styles.putPriceText}>{'$ 5.3'}</Text>
+            <Text style={styles.putPriceText}>{'₹ 5.3'}</Text>
             <Text style={styles.youText}>{'You put'}</Text>
           </View>
           <View style={styles.leftContainer}>
             <Text style={[styles.putPriceText, styles.putPriceColor]}>
-              {'$ 5.3'}
+              {'₹ 5.3'}
             </Text>
             <Text style={styles.youText}>{'You get'}</Text>
           </View>
