@@ -34,6 +34,9 @@ const colors = {
   dayNight: '#1e2122',
   greenBorder: '#00f899',
   blueBorder: '#005df2',
+  priceBack: '#0f0f0f',
+  priceBorder: '#171717',
+  modalDrop: '#28313a',
 };
 
 export default colors;

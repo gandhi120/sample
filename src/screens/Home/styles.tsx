@@ -9,6 +9,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: Colors.lightBlack,
+    padding: DeviceUiInfo.moderateScale(6),
   },
   noScrollItem: {
     paddingVertical: DeviceUiInfo.moderateScale(20),
@@ -59,7 +60,7 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.blue,
     alignItems: 'center',
     justifyContent: 'center',
-    width: (screenWidth - DeviceUiInfo.moderateScale(47)) / 2,
+    width: (screenWidth - DeviceUiInfo.moderateScale(60)) / 2,
     borderWidth: DeviceUiInfo.moderateScale(3),
   },
   yesButton: {

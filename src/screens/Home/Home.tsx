@@ -1,4 +1,10 @@
-import {Image, Text, TouchableOpacity, View} from 'react-native';
+import {
+  Image,
+  Text,
+  TouchableOpacity,
+  TouchableWithoutFeedback,
+  View,
+} from 'react-native';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {RootStackParamList} from '../../AppNavigator';
 import styles from './styles';
@@ -6,6 +12,7 @@ import {FlashList} from '@shopify/flash-list';
 import SportsCategory from './HomeComponent/SportsCategory/SportsCategory'; // Adjust the path as needed
 import Images from '@theme/images';
 import YesNoModal from '@yesNoModal';
+import {useState} from 'react';
 
 const data = [
   {id: '1', type: 'horizontal'},
@@ -20,6 +27,13 @@ interface HomeScreenProps {
 }
 
 const Home = ({navigation}: HomeScreenProps) => {
+  const [isVisible, setIsVisible] = useState<boolean>(false);
+  const [isFromYes, setIsFromYes] = useState<boolean>(false);
+
+  const onOption = (isFrom = false) => {
+    setIsFromYes(isFrom);
+    setIsVisible(true);
+  };
   const renderItem = ({item, index}: {item: any; index: number}) => {
     if (index === 0) {
       // Render sports category..
@@ -60,10 +74,13 @@ const Home = ({navigation}: HomeScreenProps) => {
           {/* This for footer button part */}
           <View style={styles.footerContainer}>
             <TouchableOpacity
-              style={[styles.buttonContainer, styles.yesButton]}>
+              style={[styles.buttonContainer, styles.yesButton]}
+              onPress={() => onOption(true)}>
               <Text style={styles.yesText}>{'Yes ₹ 5.3'}</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={[styles.buttonContainer, styles.noButton]}>
+            <TouchableOpacity
+              style={[styles.buttonContainer, styles.noButton]}
+              onPress={() => onOption(false)}>
               <Text style={styles.yesText}>{'No ₹ 4.7'}</Text>
             </TouchableOpacity>
           </View>
@@ -80,7 +97,12 @@ const Home = ({navigation}: HomeScreenProps) => {
         estimatedItemSize={50} // Estimate the item height for performance optimization
         keyExtractor={item => item.id}
       />
-      <YesNoModal />
+
+      <YesNoModal
+        visible={isVisible}
+        isFromYes={isFromYes}
+        closeModal={() => setIsVisible(false)}
+      />
     </View>
   );
 };
