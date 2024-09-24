@@ -46,7 +46,7 @@ function HomeStack() {
     <Stack.Navigator
       screenOptions={{
         headerShown: true,
-        header: props => <CustomHeader {...props} />, // Custom Header
+        header: props => <CustomHeader {...props} title={'Category'}/>, // Custom Header
       }}>
       <Stack.Screen
         name="Home"
